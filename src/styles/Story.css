@@ -1,0 +1,33 @@
+/* src/styles/Story.css */
+.story-section {
+  padding: 40px;
+  border-radius: 10px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.story-section h2 {
+  font-size: 56px;
+  color: #000000; /* Accent color */
+  margin-bottom: 20px;
+}
+
+.story-section p {
+  font-size: 18px;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.story-section a {
+  color: #522258; /* Accent color */
+  text-decoration: none;
+}
+
+.story-span {
+  color: #522258;
+}
+
+.story-section a:hover {
+  text-decoration: underline;
+}
