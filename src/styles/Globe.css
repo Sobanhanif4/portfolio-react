@@ -1,0 +1,22 @@
+.globe {
+    cursor: move;
+    /* Add dimensions and positioning if needed */
+    width: 100%; /* Example: make it responsive */
+    height: 500px; /* Example: set a specific height */
+}
+
+.countryLabel {
+    font-family: Courier, monospace; /* Fallback font */
+    color: black;
+    font-size: 14px; /* Adjust font size */
+    margin: 20px 50px; /* Adjust margins for better spacing */
+}
+
+body {
+  background-color: #333;
+  color: white; /* Ensure text is visible on dark background */
+  text-align: center;
+  font-family: Arial, sans-serif; /* Consider a more readable font */
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
+}
