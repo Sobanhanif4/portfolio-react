@@ -1,4 +1,4 @@
-#scroll-container {
+/* #scroll-container {
   background-color: #b3b3b3;
   border-radius: 10px;
   padding: 20px;
@@ -13,7 +13,6 @@
   display: flex;
   align-items: center;
   white-space: nowrap;
-  /* overflow: hidden; */
   padding: 10px 0;
 }
 
@@ -39,7 +38,6 @@
   margin: 0 10px;
 }
 
-/* Keyframes for left to right */
 @keyframes scroll-left-to-right {
   0% {
     transform: translateX(-90%);
@@ -49,7 +47,6 @@
   }
 }
 
-/* Keyframes for right to left */
 @keyframes scroll-right-to-left {
   0% {
     transform: translateX(0%);
@@ -57,4 +54,103 @@
   100% {
     transform: translateX(-100%);
   }
-}
+} */
+
+
+
+/* Container to hold the globe and scroll container side by side */
+.globe-and-scroll-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px; 
+    align-items: start; 
+    margin: 20px; 
+    width: 1200px;
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .abt-h1-p-h4{
+    width: 1200px;
+    margin: auto;
+  }
+
+  .abt-h1 {
+    font-size: 90px;
+    color: #24262f;
+  }
+  .abt-h4 {
+    font-size: 24px;
+    color: #24262f;
+  }
+
+  .abt-p{
+    font-size: 24px;
+    color: #4e525a;
+  }
+
+
+  /* Existing styles for the scroll container */
+  #scroll-container {
+    background-color: #b3b3b3;
+    border-radius: 10px;
+    padding: 27px;
+    overflow: hidden;
+    width: 100%; 
+    max-width: 400px;
+    margin: auto;
+    position: relative;
+  }
+  
+  .scroll-row {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 10px 0;
+  }
+  
+  .scroll-row-left {
+    animation: scroll-left-to-right 30s linear infinite;
+  }
+  
+  .scroll-row-right {
+    animation: scroll-right-to-left 30s linear infinite;
+  }
+  
+  .scroll-text {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin: 0 10px;
+  }
+  
+  .star-icon {
+    color: #9b59b6;
+    font-size: 20px;
+    margin: 0 10px;
+  }
+  
+  /* Keyframes for left to right */
+  @keyframes scroll-left-to-right {
+    0% {
+      transform: translateX(100%); /* Start off-screen right */
+    }
+    100% {
+      transform: translateX(-100%); /* End off-screen left */
+    }
+  }
+  
+  /* Keyframes for right to left */
+  @keyframes scroll-right-to-left {
+    0% {
+      transform: translateX(-100%); /* Start off-screen left */
+    }
+    100% {
+      transform: translateX(100%); /* End off-screen right */
+    }
+  }
+  
+  /* Globe styling */
+  
+  
