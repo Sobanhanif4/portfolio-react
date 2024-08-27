@@ -6,28 +6,28 @@ const Projects = () => {
     {
       title: 'TaskFlow',
       description: 'Task management system with drag-and-drop, real-time collaboration, and responsive layout.',
-      image: 'path/to/taskflow-image.jpg'
+      image: 'minepic.png'
     },
     {
       title: 'EcoCart',
       description: 'E-commerce platform promoting eco-friendly products with payment integration.',
-      image: 'path/to/ecocart-image.jpg'
+      image: 'minepic.png'
     },
     {
       title: 'EventPlanner',
       description: 'Event planning web application, enabling users to organize and manage events effortlessly.',
-      image: 'path/to/eventplanner-image.jpg'
+      image: 'minepic.png'
     },
     {
       title: 'FoodieFinder',
       description: 'Modern-looking restaurant discovery platform featuring real-time search, reviews, and ratings.',
-      image: 'path/to/foodiefinder-image.jpg'
+      image: 'minepic.png'
     }
   ];
 
   return (
     <section className="projects-section">
-      <h2>Projects.</h2>
+      <h2 className="projects-dot">Projects<span>.</span></h2>
       <div className="projects-grid">
         {projects.map((project, index) => (
           <ProjectCard key={index} {...project} />

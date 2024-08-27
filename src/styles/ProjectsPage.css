@@ -1,38 +1,94 @@
-.projects-page {
-    height: 100vh;
+/* src/styles/ProjectsPage.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  
+  .productPage-h1 {
+    width: 1200px;
+    margin: auto;
+    font-size: 90px;
+    letter-spacing: -3.6px;
+    font-weight: bold;
+  }
+
+  .productPage-h1 span{
+    color: #522258;
+  }
+
+  .productPage-p {
+    font-size: 24px;
+    width: 1200px;
+    margin: auto;
+    color: #4e525a;
+    margin-bottom: 28px;
+  }
+
+  .projects-page {
+    width: 100%;
+    position: relative;
+    overflow-y: auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+  
+  .project-slide {
+    width: 1200px;
+    /* height: 100vh; */
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-}
-
-.project-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 40px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    /* opacity: 0; */
+    position: relative;
+    margin: auto;
+    border: 0px solid; 
+    /* margin-top: 50px; */
+  }
+  
+  .project-slide.active {
+    opacity: 1; /* Make active slides visible */
+    z-index: 1; /* Ensure active slides are on top */
     width: 1200px;
-    max-height: 80%;
-}
-
-.project-image {
+  }
+  
+  .project-content {
+    width: 100%;
+    /* max-width: 800px; */
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    margin: 40px 0;
+    height: 850px;
+  }
+  
+  .project-image {
     width: 100%;
     height: auto;
     margin-bottom: 20px;
-}
-
-.project-info h2 {
-    font-size: 32px;
-    margin-bottom: 15px;
-}
-
-.project-info p {
-    font-size: 18px;
-    line-height: 1.6;
+    border-radius: 8px;
+  }
+  
+  .project-info {
+    margin-top: 10px;
+  }
+  
+  .project-info h2 {
+    margin: 0 0 10px;
+    font-size: 56px;
     color: #333;
-}
+    text-align: left;
+  }
+  
+  .project-info p {
+    margin: 0;
+    font-size: 24px;
+    color: #666;
+    text-align: left;
+    color: #4e525a;
+  }
+  
