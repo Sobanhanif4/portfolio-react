@@ -64,7 +64,7 @@
     grid-template-columns: 1fr 1fr; 
     gap: 10px; 
     align-items: start; 
-    margin: 20px; 
+    margin: 20px auto; 
     width: 1200px;
     margin: auto;
     overflow: hidden;
@@ -79,6 +79,11 @@
     font-size: 90px;
     color: #24262f;
   }
+
+  .abt-span {
+    color: #592228;
+  }
+  
   .abt-h4 {
     font-size: 24px;
     color: #24262f;
@@ -98,7 +103,7 @@
     overflow: hidden;
     width: 100%; 
     max-width: 400px;
-    margin: auto;
+    /* margin: auto; */
     position: relative;
   }
   
@@ -150,7 +155,5 @@
       transform: translateX(100%); 
     }
   } 
-  
-  /* Globe styling */
-  
+
   

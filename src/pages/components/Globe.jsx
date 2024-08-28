@@ -216,8 +216,9 @@ const Globe = () => {
 
   return (
     <>
-      <div id="countryLabel" className="countryLabel"></div>
+      
       <div className="globe-main">
+        {/* <div id="countryLabel" className="countryLabel"></div> */}
         <canvas id="globe" className="globe"></canvas>
       </div>
     </>
