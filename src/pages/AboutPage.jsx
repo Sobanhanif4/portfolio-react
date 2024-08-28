@@ -1,5 +1,6 @@
 import Story from "../components/Story";
 import "../styles/AboutPage.css"; // Import CSS styles
+import AnimatedExperience from "./components/AnimatedExperience";
 import Globe from "./components/Globe";
 
 const AboutPage = () => {
@@ -64,6 +65,7 @@ const AboutPage = () => {
         <Globe />
       </div>
 
+    <AnimatedExperience />
       <Story />
     </>
   );

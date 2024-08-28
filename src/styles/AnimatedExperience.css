@@ -1,0 +1,44 @@
+/* Custom Scrollbar Styles */
+.scroll-section {
+    max-height: 500px; /* Adjust based on your layout */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px;
+    position: relative;
+    width: 1200px;
+    margin: auto;
+    margin-top: 70px;
+    direction: rtl;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+  }
+  
+  .scroll-p {
+    margin-top: -20px;
+    color: white;
+  }
+
+  
+  .scroll-section::-webkit-scrollbar {
+    width: 16px; /* Width of the vertical scrollbar */
+  }
+  
+  .scroll-section::-webkit-scrollbar-track {
+    background: #24262f; /* Light gray background for the scrollbar track */
+    border-radius: 10px;
+  }
+  
+  .scroll-section::-webkit-scrollbar-thumb {
+    background-color: #522258; /* Base color for the scrollbar thumb */
+    border-radius: 8px; /* Rounded corners for the scrollbar thumb */
+    box-shadow: 0 0 10px 4px rgba(82, 34, 88, 0.7); /* Subtle glowing effect with the same color */
+  }
+  
+  .scroll-section::-webkit-scrollbar-thumb:hover {
+    background-color: #6d3f6f; /* Lighter, more vibrant color on hover */
+    box-shadow: 0 0 20px 8px rgba(82, 34, 88, 0.9); /* More intense glow effect on hover */
+  }
+  
+  .scroll-section > * {
+    direction: ltr; /* Reset direction for inner content */
+  }
+  

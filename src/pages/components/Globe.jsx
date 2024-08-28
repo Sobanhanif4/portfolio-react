@@ -11,7 +11,7 @@ const Globe = () => {
       degPerSec: 6,
       angles: { x: -100, y: -20, z: 0 },
       colors: {
-        water: "#111",
+        water: "#24262f",
         land: "#424447",
         pakistan: "#00FF00", // Green color for Pakistan
         hover: "#eee",

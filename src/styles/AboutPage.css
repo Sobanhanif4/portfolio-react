@@ -1,63 +1,3 @@
-/* #scroll-container {
-  background-color: #b3b3b3;
-  border-radius: 10px;
-  padding: 20px;
-  overflow: hidden;
-  width: 90%;
-  max-width: 400px;
-  margin: auto;
-  position: relative;
-}
-
-.scroll-row {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  padding: 10px 0;
-}
-
-.scroll-row-left {
-  animation: scroll-left-to-right 10s linear infinite;
-}
-
-.scroll-row-right {
-  animation: scroll-right-to-left 10s linear infinite;
-}
-
-.scroll-text {
-  background-color: black;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  margin: 0 10px;
-}
-
-.star-icon {
-  color: #9b59b6;
-  font-size: 20px;
-  margin: 0 10px;
-}
-
-@keyframes scroll-left-to-right {
-  0% {
-    transform: translateX(-90%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
-
-@keyframes scroll-right-to-left {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-} */
-
-
-
 /* Container to hold the globe and scroll container side by side */
 .globe-and-scroll-container {
     display: grid;
@@ -97,7 +37,7 @@
 
   
   #scroll-container {
-    background-color: #b3b3b3;
+    background-color: #e0e0e0;
     border-radius: 10px;
     padding: 27px;
     overflow: hidden;
