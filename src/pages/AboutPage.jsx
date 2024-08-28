@@ -5,16 +5,17 @@ import Globe from "./components/Globe";
 const AboutPage = () => {
   return (
     <>
-      <section>
-        <div className="abt-h1-p-h4">
+
+        <section className="abt-h1-p-h4">
           <h1 className="abt-h1">About me.</h1>
           <p className="abt-p">
             Developing beautiful and functional websites is what I love doing,
             and that's why I give my all in every new challenge.
           </p>
           <h4 className="abt-h4">My Stack</h4>
-        </div>
+        </section>
         <div className="globe-and-scroll-container">
+        
           <div id="scroll-container">
             {/* Row moving from left to right */}
             <div className="scroll-row scroll-row-left">
@@ -63,7 +64,7 @@ const AboutPage = () => {
           </div>
           <Globe />
         </div>
-      </section>
+
 
       <Story />
     </>

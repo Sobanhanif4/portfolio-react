@@ -90,7 +90,7 @@
   }
 
 
-  /* Existing styles for the scroll container */
+  
   #scroll-container {
     background-color: #b3b3b3;
     border-radius: 10px;
@@ -131,25 +131,25 @@
     margin: 0 10px;
   }
   
-  /* Keyframes for left to right */
+  
   @keyframes scroll-left-to-right {
     0% {
-      transform: translateX(100%); /* Start off-screen right */
+      transform: translateX(100%); 
     }
     100% {
-      transform: translateX(-100%); /* End off-screen left */
+      transform: translateX(-100%); 
     }
   }
   
-  /* Keyframes for right to left */
+  
   @keyframes scroll-right-to-left {
     0% {
-      transform: translateX(-100%); /* Start off-screen left */
+      transform: translateX(-100%); 
     }
     100% {
-      transform: translateX(100%); /* End off-screen right */
+      transform: translateX(100%); 
     }
-  }
+  } 
   
   /* Globe styling */
   

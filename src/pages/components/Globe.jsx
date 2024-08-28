@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
 import "../../styles/Globe.css"; // Adjust the path if needed
-import { div } from "three/webgpu";
 
 const Globe = () => {
   useEffect(() => {
@@ -217,7 +216,7 @@ const Globe = () => {
 
   return (
     <>
-      <data>My Place</data>
+      <div id="countryLabel" className="countryLabel"></div>
       <div className="globe-main">
         <canvas id="globe" className="globe"></canvas>
       </div>
