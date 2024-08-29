@@ -1,46 +1,66 @@
-/* src/styles/Experience.css */
 .experience-section {
-    padding: 40px;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  .experience-section h2 {
-    font-size: 56px;
-    color: #24262f; 
-  }
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: auto;
+  width: 1200px;
+}
 
-  .experience-span {
-    color: #522258; 
-  }
+.experience-container {
+  display: flex;
+}
 
-  .experience-item {
-    margin-bottom: 20px;
-  }
-  
-  .experience-item h3 {
-    font-size: 24px;
-    color: #522258; /* Accent color */
-  }
-  
-  .experience-item h4 {
-    font-size: 20px;
-    margin-top: 5px;
-  }
-  
-  .experience-item p {
-    font-size: 16px;
-    color: #777;
-  }
-  
-  .experience-item ul {
-    margin-top: 10px;
-    padding-left: 20px;
-  }
-  
-  .experience-item li {
-    font-size: 16px;
-    color: #555;
-  }
-  
-  
+.sidebar {
+  width: 200px;
+  margin-right: 20px;
+  position: relative;
+}
+
+.scrollbar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px; /* Width of the scrollbar line */
+  height: 100%;
+  background-color: lightgray; /* Default color of the scrollbar */
+}
+
+.sidebar-link {
+  padding: 10px;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.3s ease;
+  position: relative;
+  margin-left: 10px; /* Add spacing to align with the scrollbar */
+}
+
+.sidebar-link.active {
+  color: purple;
+  font-weight: bold;
+}
+
+.sidebar-link.active::before {
+  content: '';
+  position: absolute;
+  left: -10px; /* Position of the highlight relative to the sidebar-link */
+  width: 4px; /* Width of the active highlight line */
+  height: 100%;
+  background-color: purple; /* Color of the highlighted scrollbar */
+}
+
+.experience-details {
+  flex-grow: 1;
+}
+
+.experience-details h3 {
+  color: purple;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 10px;
+}

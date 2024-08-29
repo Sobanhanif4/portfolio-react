@@ -1,22 +1,59 @@
-/* src/styles/Projects.css */
 .projects-section {
-    padding: 40px;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    /* grid-template-columns: 0.6fr 0.7fr; */
-    gap: 20px;
-    background: red;
-    padding: 30px 10px;
-  }
-  h2{
-    font-size: 65px;
-  }
-  .projects-dot span {
-    color: #522258;
-  }
-  
+  max-width: 1200px;
+  margin: auto;
+  background-color: #e0e0e0;
+  border-radius: 16px;
+  padding: 15px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  padding: 20px 30px;
+}
+
+.projects-grid-sep-products {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 20px 30px;
+}
+
+.project-card:nth-child(1) {
+  width: 500px;
+  /* height: 100%; */
+}
+
+.project-card:nth-child(2) {
+  width: 600px;
+  margin-right: 20px;
+  /* height: 100%; */
+}
+.projects-grid-sep-products .project-card:nth-child(1) {
+  /* Example of adjusting grid column span */
+  width: 600px; 
+}
+
+.projects-grid-sep-products .project-card:nth-child(2) {
+  width: 500px; 
+}
+
+.project-card {
+  width: auto; /* Let the grid layout handle the width */
+}
+
+
+.projects-h2 {
+  font-size: 56px;
+  margin: auto;
+  width: 1200px;
+  margin-bottom: 35px;
+  margin-top: 180px;
+  color: #24262f;
+}
+
+.projects-dot {
+  color: #522258;
+}

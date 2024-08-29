@@ -1,25 +1,28 @@
-/* src/styles/ProjectCard.css */
+
 .project-card {
-    background-color: white;
-    padding: 20px;
+    /* background-color: white; */
+    /* padding: 20px; */
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    /* text-align: center; */
   }
   
-  .project-card img {
+  .projects-image {
     width: 100%;
-    border-radius: 8px;
     margin-bottom: 15px;
+    height: 315px !important;
+    object-fit: cover;
+    border-radius: 20px;
   }
   
   .project-card h3 {
-    font-size: 22px;
-    color: #6C5CE7; /* Accent color */
+    font-size: 24px;
+    color: #522258;
   }
   
   .project-card p {
-    font-size: 16px;
+    font-size: 22px;
     color: #555;
   }
   
+

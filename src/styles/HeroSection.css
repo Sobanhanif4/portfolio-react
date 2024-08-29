@@ -29,25 +29,31 @@
   .hero-content h1 {
     letter-spacing: -2.9px;
     font-size: 90px;
-    color: #24262F; /* Accent color */
+    color: #24262F; 
     font-weight: bold;
+    line-height: 1;
+    margin-bottom: 50px;
   }
   
   .hero-content p {
-    font-size: 20px;
-    margin-top: 20px;
+    margin-top: -20px;
     font-size: 24px;
-    font-weight: 200;
+    font-weight: 300;
+    color: #4e525a;
   }
   
   .hero-buttons {
     margin-top: 30px;
+    gap: 10px;
+    display: flex;
+
   }
   
   .btn {
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 16px;
     margin-right: 10px;
+    font-weight: 200;
   }
   
   .btn-primary {
