@@ -3,7 +3,9 @@ import "../../styles/AnimatedExperience.css"; // Import CSS styles
 
 const AnimatedExperience = () => {
   return (
+    
     <div className="container">
+        <h1 className="animatedExp-h1">My Experience<span className="animatedExp-span">.</span></h1>
       <div className="scroll-section">
         <h2 className="scroll-h2">Webflow</h2>
         <p className="scroll-p">

@@ -1,7 +1,7 @@
 /* Custom Scrollbar Styles */
 .scroll-section {
-    max-height: 500px; /* Adjust based on your layout */
-    overflow-y: auto; /* Enable vertical scrolling */
+    height: 800px; 
+    overflow-y: auto; 
     padding: 20px;
     position: relative;
     width: 1200px;
@@ -17,13 +17,25 @@
     color: white;
   }
 
+  .animatedExp-h1 {
+    width: 1200px;
+    margin: auto;
+    font-size: 56px;
+    color: #24262f;
+  }
+
+  .animatedExp-span{
+    color: #592228;
+
+  }
+
   
   .scroll-section::-webkit-scrollbar {
-    width: 16px; /* Width of the vertical scrollbar */
+    width: 4px; /* Width of the vertical scrollbar */
   }
   
   .scroll-section::-webkit-scrollbar-track {
-    background: #24262f; /* Light gray background for the scrollbar track */
+    background: #e0e0e0; /* Light gray background for the scrollbar track */
     border-radius: 10px;
   }
   

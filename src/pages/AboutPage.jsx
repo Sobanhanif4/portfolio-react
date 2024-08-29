@@ -7,7 +7,9 @@ const AboutPage = () => {
   return (
     <>
       <section className="abt-h1-p-h4">
-        <h1 className="abt-h1">About<span className="abt-span">.</span> </h1>
+        <h1 className="abt-h1">
+          About<span className="abt-span">.</span>{" "}
+        </h1>
         <p className="abt-p">
           Developing beautiful and functional websites is what I love doing, and
           that's why I give my all in every new challenge.
@@ -65,8 +67,8 @@ const AboutPage = () => {
         <Globe />
       </div>
 
-    <AnimatedExperience />
       <Story />
+      <AnimatedExperience />
     </>
   );
 };
