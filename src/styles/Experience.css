@@ -22,7 +22,7 @@
   top: 0;
   width: 4px; /* Width of the scrollbar line */
   height: 100%;
-  background-color: lightgray; /* Default color of the scrollbar */
+  background-color: rgb(170, 145, 170); /* Default color of the scrollbar */
 }
 
 .sidebar-link {
@@ -32,6 +32,7 @@
   transition: color 0.3s ease;
   position: relative;
   margin-left: 10px; /* Add spacing to align with the scrollbar */
+  font-size: 22px;
 }
 
 .sidebar-link.active {
@@ -54,13 +55,33 @@
 
 .experience-details h3 {
   color: purple;
+  font-size: 22px;
+  font-weight: 300;
+  margin-bottom: -10px;
 }
 
-ul {
+.exp-h2{
+  font-size: 56px;
+  color: #24262f;
+
+}
+
+.exp-ul {
   list-style-type: none;
   padding: 0;
 }
 
-ul li {
+.exp-p {
+  font-size: 13px;
+  margin-bottom: 20px;
+  font-weight: 200;
+}
+
+.exp-li {
   margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #4e525a;
+  letter-spacing: 0.5px;
 }

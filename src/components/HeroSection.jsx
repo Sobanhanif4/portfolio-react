@@ -1,6 +1,7 @@
 // src/components/HeroSection.jsx
 import React from 'react';
 import '../styles/HeroSection.css';
+import CtaButton from './CtaButton';
 
 
 const HeroSection = () => {
@@ -12,10 +13,7 @@ const HeroSection = () => {
         <p>
           I'm a frontend developer based in Italy, I'll help you build beautiful websites your users will love.
         </p>
-        <div className="hero-buttons">
-          <button className="btn btn-primary">Get In Touch</button>
-          <button className="btn btn-secondary">Browse Projects</button>
-        </div>
+       <CtaButton />
       </div>
       <div className="hero-image">
         <img src="/mine.png" alt="Profile" />

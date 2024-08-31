@@ -48,7 +48,7 @@ const Experience = () => {
 
   return (
     <section className="experience-section">
-      <h2>Experience<span className='experience-span'>.</span></h2>
+      <h2 className="exp-h2">Experience<span className='experience-span'>.</span></h2>
       <div className="experience-container">
         {/* Sidebar with scroll highlight */}
         <div className="sidebar">
@@ -66,11 +66,11 @@ const Experience = () => {
         
         {/* Main content area */}
         <div className="experience-details">
-          <h3>{selectedExperience.position}</h3>
-          <p>{selectedExperience.period}</p>
-          <ul>
+          <h3 className='exp-h3'>{selectedExperience.position}</h3>
+          <p className='exp-p'>{selectedExperience.period}</p>
+          <ul className="exp-ul">
             {selectedExperience.tasks.map((task, idx) => (
-              <li key={idx}>{task}</li>
+              <li key={idx} className="exp-li">{task}</li>
             ))}
           </ul>
         </div>

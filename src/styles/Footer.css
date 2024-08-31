@@ -1,45 +1,75 @@
-/* src/styles/Footer.css */
+/* Footer container styling */
 .footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  grid-template-rows: 1fr 1fr; /* Two equal rows */
+  padding: 20px 40px;
+  max-width: 1200px;
+  margin: auto;
+  background-color: #fff; /* Optional background color */
+  height: 150px; /* Adjust as needed */
+  position: relative; /* Ensures the positioning is relative to the footer */
+}
+
+/* Positioning items in the footer */
+.footer-nav {
+  grid-column: 1 / 2; /* First column */
+  grid-row: 1 / 2; /* First row */
   display: flex;
-    padding: 20px 40px;
-    text-align: center;
-    max-width: 1200px;
-    margin: auto;
-    justify-content: space-between;
-  }
-  
-  .footer-nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 15px;
-  }
-  
-  .footer-link {
-    text-decoration: none;
-    color: black;
-    font-size: 16px;
-  }
-  
-  .footer-link:hover {
-    color: #6C5CE7; /* Accent color */
-  }
-  
-  .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 15px;
-  }
-  
-  .social-icon {
-    color: #6C5CE7; /* Accent color */
-    font-size: 18px;
-    text-decoration: none;
-  }
-  
-  .footer-copy {
-    font-size: 14px;
-    color: #777;
-  }
-  
+  gap: 30px;
+  justify-content: flex-start;
+}
+
+.social-icons {
+  grid-column: 2 / 3; /* Second column */
+  grid-row: 1 / 2; /* First row */
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.cta-footer {
+  grid-column: 1 / 2; /* First column */
+  grid-row: 2 / 3; /* Second row */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  width: 800px;
+}
+
+.footer-copy {
+  grid-column: 2 / 3; /* Second column */
+  grid-row: 3 / 3; /* Second row */
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+  /* justify-content: end; */
+  margin-bottom: 10px;
+}
+
+/* Link styling */
+.footer-link {
+  text-decoration: none;
+  color: #333; /* Darker color for the links */
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.footer-link:hover {
+  color: #6C5CE7; /* Accent color */
+}
+
+/* Social icon styling */
+.social-icon {
+  color: #333; /* Darker color for the social icons */
+  font-size: 18px;
+}
+
+.social-icon:hover {
+  color: #6C5CE7; /* Accent color on hover */
+}
+
+.footer-copy-p{
+  margin-bottom: 60px;
+}
