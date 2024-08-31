@@ -31,21 +31,22 @@
 .cta-footer {
   grid-column: 1 / 2; /* First column */
   grid-row: 2 / 3; /* Second row */
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   justify-content: flex-start;
   gap: 20px;
   width: 800px;
+  margin-top: 15px;
 }
 
 .footer-copy {
   grid-column: 2 / 3; /* Second column */
-  grid-row: 3 / 3; /* Second row */
+  grid-row: 2 / 3; /* Second row */
   text-align: center;
   font-size: 14px;
   color: #777;
-  /* justify-content: end; */
-  margin-bottom: 10px;
+  padding-top: 79px;
+  margin-left: 30px;
 }
 
 /* Link styling */
@@ -57,19 +58,19 @@
 }
 
 .footer-link:hover {
-  color: #6C5CE7; /* Accent color */
+  color: #6c5ce7;
 }
 
 /* Social icon styling */
 .social-icon {
-  color: #333; /* Darker color for the social icons */
+  color: #333;
   font-size: 18px;
 }
 
 .social-icon:hover {
-  color: #6C5CE7; /* Accent color on hover */
+  color: #6c5ce7;
 }
 
-.footer-copy-p{
+.footer-copy-p {
   margin-bottom: 60px;
 }
