@@ -1,21 +1,40 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../styles/Footer.css";
 import CtaButton from "./CtaButton";
 
 const Footer = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <footer className="footer">
       <div className="footer-nav">
-        <Link to="/" className="footer-link">
+        <Link
+          to="/"
+          className={`footer-link ${currentPath === "/" ? "active" : " "}`}
+        >
           Home
         </Link>
-        <Link to="/projects" className="footer-link">
+        <Link
+          to="/projects"
+          className={`footer-link ${
+            currentPath === "/projects" ? "active" : " "
+          }`}
+        >
           Projects
         </Link>
-        <Link to="/about" className="footer-link">
+        <Link
+          to="/about"
+          className={`footer-link ${currentPath === "/about" ? "active" : " "}`}
+        >
           About
         </Link>
-        <Link to="/contact" className="footer-link">
+        <Link
+          to="/contact"
+          className={`footer-link ${
+            currentPath === "/contact" ? "active" : " "
+          }`}
+        >
           Contact
         </Link>
       </div>
@@ -60,7 +79,9 @@ const Footer = () => {
         </a>
       </div>
       <div className="cta-footer">
-        <p className="cta-p">Interested in working together?</p>
+        <p className="cta-p">
+          Interested in working together <span className="cta-p-span">?</span>
+        </p>
         <CtaButton />
       </div>
       <div className="footer-copy">

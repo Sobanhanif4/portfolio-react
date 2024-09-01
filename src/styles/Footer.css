@@ -8,6 +8,8 @@
   margin: auto;
   height: 150px; /* Adjust as needed */
   position: relative; /* Ensures the positioning is relative to the footer */
+  margin-bottom: 40px;
+
 }
 
 /* Positioning items in the footer */
@@ -38,6 +40,15 @@
   margin-top: 15px;
 }
 
+.cta-p{
+  font-size: 22px;
+  color: #4E525a;
+}
+
+.cta-p-span {
+  color: #522258;
+}
+
 .footer-copy {
   grid-column: 2 / 3; /* Second column */
   grid-row: 2 / 3; /* Second row */
@@ -56,6 +67,11 @@
   font-weight: 500;
   color: #4E525a;
 
+}
+
+.footer-link.active {
+  color: #522258; 
+  font-weight: 600; 
 }
 
 .footer-link:hover {
