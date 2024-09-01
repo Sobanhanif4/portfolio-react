@@ -6,7 +6,6 @@
   padding: 20px 40px;
   max-width: 1200px;
   margin: auto;
-  background-color: #fff; /* Optional background color */
   height: 150px; /* Adjust as needed */
   position: relative; /* Ensures the positioning is relative to the footer */
 }
@@ -53,12 +52,14 @@
 .footer-link {
   text-decoration: none;
   color: #333; /* Darker color for the links */
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
+  color: #4E525a;
+
 }
 
 .footer-link:hover {
-  color: #6c5ce7;
+  color: #522258;
 }
 
 /* Social icon styling */
@@ -68,9 +69,9 @@
 }
 
 .social-icon:hover {
-  color: #6c5ce7;
+  color: #522258;
 }
 
 .footer-copy-p {
-  margin-bottom: 60px;
+  margin-bottom: 15px;
 }
