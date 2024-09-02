@@ -7,13 +7,19 @@ body, html {
     overflow-x: hidden;
   }
   
-  .productPage-h1 {
+  .productPage-h1-p {
     width: 1200px;
     margin: auto;
+    margin-bottom: 50px;
+    margin-top: -75px;
+  }
+
+  .productPage-h1 {
     font-size: 90px;
     letter-spacing: -3.6px;
     font-weight: bold;
     color: #24262f;
+    margin-bottom: -32px;
   }
 
   .productPage-h1 span{
@@ -22,10 +28,8 @@ body, html {
 
   .productPage-p {
     font-size: 24px;
-    width: 1200px;
-    margin: auto;
+    width: 760px;
     color: #4e525a;
-    margin-bottom: 28px;
   }
 
   .projects-page {
@@ -76,6 +80,7 @@ body, html {
   
   .project-info {
     margin-top: 10px;
+    width: 800px;
   }
   
   .project-info h2 {

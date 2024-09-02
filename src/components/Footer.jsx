@@ -86,7 +86,7 @@ const Footer = () => {
       </div>
       <div className="footer-copy">
         <p className="footer-copy-p">
-          ©2023 All Rights Reserved. Made with by Soban Hanif
+          ©2023 All Rights Reserved. Made with by <span className="footer-copy-p-span">Soban Hanif ♠️</span>
         </p>
       </div>
     </footer>

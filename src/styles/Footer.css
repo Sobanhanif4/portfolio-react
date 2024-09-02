@@ -9,7 +9,7 @@
   height: 150px; /* Adjust as needed */
   position: relative; /* Ensures the positioning is relative to the footer */
   margin-bottom: 40px;
-
+  margin-top: 50px;
 }
 
 /* Positioning items in the footer */
@@ -52,11 +52,16 @@
 .footer-copy {
   grid-column: 2 / 3; /* Second column */
   grid-row: 2 / 3; /* Second row */
-  text-align: center;
-  font-size: 14px;
+  text-align: right;
+  font-size: 16px;
   color: #777;
   padding-top: 79px;
   margin-left: 30px;
+}
+
+.footer-copy-p-span {
+  color: #522258;
+  font-weight: 600;
 }
 
 /* Link styling */

@@ -66,10 +66,16 @@ const ProjectsPage = () => {
 
   return (
     <>
-      
       <div className="projects-page">
-      <h1 className="productPage-h1">My <span>Best</span> Creations</h1>
-      <p className="productPage-p">Designing and Developing Robust and Stylish Web Applications for a Decade and Counting</p>
+        <div className="productPage-h1-p">
+          <h1 className="productPage-h1">
+            My <span>Best</span> Creations
+          </h1>
+          <p className="productPage-p">
+            Designing and Developing Robust and Stylish Web Applications for a
+            Decade and Counting
+          </p>
+        </div>
         {projects.map((project, index) => (
           <div
             key={project.id}
