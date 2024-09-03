@@ -1,74 +1,96 @@
-import React, { useEffect, useState, useRef } from "react";
-import "../../styles/AnimatedExperience.css"; // Import local CSS styles
 
-const AnimatedExperience = () => {
-  const scrollRef = useRef(null);
-  const [scrollHeight, setScrollHeight] = useState(0);
-  const [scrollTop, setScrollTop] = useState(0);
+import React, { useEffect, useRef, useState } from 'react';
+import "../../styles/AnimatedExperience.css"; // Import regular CSS
+
+const StickySlider = () => {
+  const [currentTab, setCurrentTab] = useState(null);
+  const [tabPositions, setTabPositions] = useState({});
+  const tabRefs = useRef([]);
+  const sliderRef = useRef(null);
+
+  const tabs = [
+    { id: 'tab-es6', label: 'ES6' },
+    { id: 'tab-flexbox', label: 'Flexbox' },
+    { id: 'tab-react', label: 'React' },
+    { id: 'tab-angular', label: 'Angular' },
+    { id: 'tab-other', label: 'Other' }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = scrollRef.current.scrollTop;
-      const scrollHeight = scrollRef.current.scrollHeight - scrollRef.current.clientHeight;
+      const scrollTop = window.scrollY;
+      const tabPositions = {};
 
-      const scrollPercent = (scrollTop / scrollHeight) * 100;
+      tabs.forEach(tab => {
+        const element = document.getElementById(tab.id);
+        if (element) {
+          tabPositions[tab.id] = element.offsetTop;
+        }
+      });
 
-      setScrollTop(scrollTop);
-      setScrollHeight(scrollPercent);
+      setTabPositions(tabPositions);
+
+      const closestTab = Object.keys(tabPositions).reduce((closest, key) => {
+        return Math.abs(tabPositions[key] - scrollTop) < Math.abs(tabPositions[closest] - scrollTop)
+          ? key
+          : closest;
+      }, Object.keys(tabPositions)[0]);
+
+      setCurrentTab(closestTab);
+
+      if (sliderRef.current) {
+        const activeTab = tabRefs.current.find(tab => tab.id === closestTab);
+        if (activeTab) {
+          sliderRef.current.style.width = `${activeTab.clientWidth}px`;
+          sliderRef.current.style.left = `${activeTab.offsetLeft}px`;
+        }
+      }
     };
 
-    const scrollSection = scrollRef.current;
-    scrollSection.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [tabs]);
 
-    return () => scrollSection.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleClick = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
-    <div className="animated-experience__container">
-      <h1 className="animated-experience__title">
-        My Experience<span className="animated-experience__title-dot">.</span>
+    <div className="sticky-slider__container">
+      <h1 className="sticky-slider__title">
+        Sticky Slider Navigation<span className="sticky-slider__titleDot">.</span>
       </h1>
-      <div className="animated-experience__scroll-section" ref={scrollRef}>
-        <div className="animated-experience__scroll-indicator">
-          <div
-            className="animated-experience__indicator-line"
-            style={{
-              height: `${scrollHeight}%`,
-              top: `${scrollTop}px`,
-              transition: `top ${scrollHeight > 0 ? '0.4s' : '0s'} ease-out`, // Smoother transition
-            }}
-          ></div>
-        </div>
-        {/* Experience Items */}
-        {[
-          { number: "01", role: "Software Developer", company: "Webflow" },
-          { number: "02", role: "Frontend Developer", company: "Stripe" },
-          { number: "03", role: "UI Engineer", company: "Spotify" },
-          { number: "04", role: "Backend Developer", company: "Amazon" },
-          { number: "05", role: "Full Stack Developer", company: "Google" },
-          { number: "06", role: "DevOps Engineer", company: "Microsoft" },
-        ].map((experience, index) => (
-          <div className="animated-experience__item" key={index}>
-            <div className={`animated-experience__number ${Math.floor(scrollTop / 100) === index ? 'active' : ''}`}>
-              {experience.number}
-            </div>
-            <div className="animated-experience__details">
-              <h2 className="animated-experience__role">{experience.role}</h2>
-              <h3 className="animated-experience__company">{experience.company}</h3>
-              <p className="animated-experience__description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam aliquam
-                nisl sit amet lacus volutpat, vitae commodo odio tincidunt.
-                Suspendisse libero purus, tincidunt in massa vel, eleifend aliquet mi.
-                Sed erat lorem, posuere quis dolor ullamcorper, posuere bibendum arcu.
-                Donec lacinia rutrum nibh faucibus malesuada. Quisque non aliquam nibh,
-                quis laoreet magna. Morbi blandit ex sed lorem blandit interdum.
-              </p>
-            </div>
-          </div>
+      <div className="sticky-slider__tabsContainer">
+        {tabs.map(tab => (
+          <a
+            key={tab.id}
+            href={`#${tab.id}`}
+            className="sticky-slider__tab"
+            onClick={() => handleClick(tab.id)}
+            ref={el => tabRefs.current.push(el)}
+          >
+            {tab.label}
+          </a>
         ))}
+        <span className="sticky-slider__tabSlider" ref={sliderRef}></span>
       </div>
+      <main className="sticky-slider__main">
+        {tabs.map(tab => (
+          <section className="sticky-slider__slide" id={tab.id} key={tab.id}>
+            <h1>{tab.label}</h1>
+            <h3>Something about {tab.label.toLowerCase()}</h3>
+          </section>
+        ))}
+      </main>
     </div>
   );
 };
 
-export default AnimatedExperience;
+export default StickySlider;
+

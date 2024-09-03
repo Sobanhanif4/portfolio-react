@@ -1,5 +1,4 @@
-/* Container for the entire experience section */
-.animated-experience__container {
+.sticky-slider__container {
   width: 100%;
   max-width: 1200px;
   margin: auto;
@@ -7,119 +6,70 @@
   position: relative;
 }
 
-/* Title styling */
-.animated-experience__title {
+.sticky-slider__title {
   font-size: 56px;
   color: #24262f;
   margin-bottom: 30px;
   text-align: center;
 }
 
-.animated-experience__title-dot {
+.sticky-slider__titleDot {
   color: #592228;
 }
 
-/* Scroll section styling */
-.animated-experience__scroll-section {
-  height: 800px; /* Adjust height as needed */
-  overflow-y: auto;
+.sticky-slider__tabsContainer {
+  display: flex;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.sticky-slider__tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  color: #000;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+.sticky-slider__tab:hover {
+  background: rgba(102, 177, 241, 0.8);
+  color: white;
+}
+
+.sticky-slider__tabSlider {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  background: #66b1f1;
+  transition: left 0.3s, width 0.3s;
+}
+
+.sticky-slider__main {
   padding: 20px;
-  background-color: #e0e0e0;
-  border-radius: 10px;
-  position: relative;
-  direction: rtl; /* Start scrollbar from right side */
-  scrollbar-width: thin; /* Firefox */
-  z-index: 1; /* Ensure it is above background elements */
 }
 
-/* Scrollbar styling for WebKit browsers */
-.animated-experience__scroll-section::-webkit-scrollbar {
-  width: 4px;
+.sticky-slider__slide {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eee;
+  text-align: center;
+  padding: 0 2em;
 }
 
-.animated-experience__scroll-section::-webkit-scrollbar-track {
-  background: #e0e0e0;
-  border-radius: 10px;
-}
-
-.animated-experience__scroll-section::-webkit-scrollbar-thumb {
-  background-color: #522258;
-  border-radius: 8px;
-  box-shadow: 0 0 10px 4px rgba(82, 34, 88, 0.7);
-}
-
-.animated-experience__scroll-section::-webkit-scrollbar-thumb:hover {
-  background-color: #6d3f6f;
-  box-shadow: 0 0 20px 8px rgba(82, 34, 88, 0.9);
-}
-
-.animated-experience__scroll-section > * {
-  direction: ltr; /* Reset direction for inner content */
-}
-
-/* Scroll indicator styling */
-.animated-experience__scroll-indicator {
-  position: absolute;
-  left: 50px; /* Adjust to position the indicator as per your design */
-  top: 0;
-  width: 4px;
-  height: 100%;
-  background-color: transparent;
-  z-index: 0; /* Behind the numbers */
-}
-
-/* Line that moves up and down to show scroll progress */
-.animated-experience__indicator-line {
-  position: absolute;
-  width: 4px;
-  background-color: #6d3f6f;
-  border-radius: 8px;
-  transition: top 0.4s ease-out; /* Smooth transition for scroll movement */
-  z-index: -1; /* Place the indicator behind numbers */
-}
-
-/* Styling for each experience item */
-.animated-experience__item {
-  margin-bottom: 60px;
-  position: relative;
-  padding-left: 80px; /* Ensures text does not overlap with scrollbar */
-  z-index: 2; /* Ensure numbers are above indicator */
-}
-
-.animated-experience__number {
-  font-size: 48px;
-  font-weight: bold;
-  color: #24262f;
-  position: absolute;
-  left: 0;
-  top: 0;
-  transition: color 0.3s ease; 
-  z-index: 2; 
-}
-
-.animated-experience__number.active {
-  color: #6d3f6f; 
-}
-
-.animated-experience__details {
-  margin-left: 60px;
-}
-
-.animated-experience__role {
-  font-size: 18px;
-  color: #6d3f6f;
+.sticky-slider__slide h1 {
+  font-size: 2rem;
   margin: 0;
+  letter-spacing: 1rem;
 }
 
-.animated-experience__company {
-  font-size: 24px;
-  font-weight: bold;
-  color: #24262f;
-  margin: 5px 0;
-}
-
-.animated-experience__description {
-  font-size: 16px;
-  color: #333;
-  line-height: 1.5;
+.sticky-slider__slide h3 {
+  font-size: 1rem;
+  letter-spacing: 0.3rem;
+  opacity: 0.6;
 }
