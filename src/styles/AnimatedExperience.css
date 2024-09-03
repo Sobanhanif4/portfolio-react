@@ -93,12 +93,12 @@
   position: absolute;
   left: 0;
   top: 0;
-  transition: color 0.3s ease; /* Smooth transition for color change */
-  z-index: 2; /* On top of everything */
+  transition: color 0.3s ease; 
+  z-index: 2; 
 }
 
 .animated-experience__number.active {
-  color: #6d3f6f; /* Active color when in view */
+  color: #6d3f6f; 
 }
 
 .animated-experience__details {
