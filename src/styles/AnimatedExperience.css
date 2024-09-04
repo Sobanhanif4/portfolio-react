@@ -73,3 +73,8 @@
   letter-spacing: 0.3rem;
   opacity: 0.6;
 }
+
+.sticky-slider__tab.active {
+  color: #fff;
+  background-color: #007bff;
+}

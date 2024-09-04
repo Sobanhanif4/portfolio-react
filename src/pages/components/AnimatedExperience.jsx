@@ -1,9 +1,8 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import "../../styles/AnimatedExperience.css"; // Import regular CSS
 
 const StickySlider = () => {
-  const [currentTab, setCurrentTab] = useState(null);
+  const [currentTab, setCurrentTab] = useState('tab-es6'); // Set the default active tab here
   const [tabPositions, setTabPositions] = useState({});
   const tabRefs = useRef([]);
   const sliderRef = useRef(null);
@@ -71,7 +70,7 @@ const StickySlider = () => {
           <a
             key={tab.id}
             href={`#${tab.id}`}
-            className="sticky-slider__tab"
+            className={`sticky-slider__tab ${currentTab === tab.id ? 'active' : ''}`}
             onClick={() => handleClick(tab.id)}
             ref={el => tabRefs.current.push(el)}
           >
@@ -93,4 +92,3 @@ const StickySlider = () => {
 };
 
 export default StickySlider;
-
