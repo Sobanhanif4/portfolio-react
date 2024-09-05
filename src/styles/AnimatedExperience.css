@@ -53,7 +53,7 @@
 }
 
 .sticky-slider__slide {
-  min-height: 80vh; /* Adjusted height to ensure enough space for content */
+  min-height: 80vh; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -61,7 +61,7 @@
   background: #f4f4f4;
   text-align: center;
   padding: 40px 2em;
-  margin-bottom: 20px; /* Add space between sections */
+  margin-bottom: 20px; 
 }
 
 .sticky-slider__slide h1 {
