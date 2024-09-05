@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import "../styles/Header.css";
+import { MdOutlineContactPhone } from "react-icons/md";
 
 const Header = () => {
   const location = useLocation();
@@ -28,6 +29,13 @@ const Header = () => {
           className={`footer-link ${currentPath === "/about" ? "active" : " "}`}
         >
           About
+        </Link>
+        <Link
+        to="/contact"
+        className={`footer-link ${currentPath === "/contact" ? "active" : " "}`}
+        >
+          <MdOutlineContactPhone />
+
         </Link>
       </nav>
     </header>

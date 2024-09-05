@@ -17,6 +17,8 @@
   .nav {
     display: flex;
     gap: 20px;
+    width: 100%;
+    justify-content: center;
   }
   
   .nav-link {
@@ -24,6 +26,7 @@
     color: black;
     font-size: 18px;
     font-weight: 400;
+    /* align-items: center; */
   }
   
   .nav-link:hover {
