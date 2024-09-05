@@ -10,11 +10,11 @@
   font-size: 56px;
   color: #24262f;
   margin-bottom: 30px;
-  text-align: center;
+  text-align: left;
 }
 
 .sticky-slider__titleDot {
-  color: #592228;
+  color: #522258;
 }
 
 .sticky-slider__tabsContainer {
@@ -36,7 +36,7 @@
 }
 
 .sticky-slider__tab:hover {
-  background: rgba(102, 177, 241, 0.8);
+  background: #634367;
   color: white;
 }
 
@@ -44,7 +44,7 @@
   position: absolute;
   bottom: 0;
   height: 4px;
-  background: #66b1f1;
+  background: #522258;
   transition: left 0.3s, width 0.3s;
 }
 
@@ -53,28 +53,38 @@
 }
 
 .sticky-slider__slide {
-  height: 100vh;
+  min-height: 80vh; /* Adjusted height to ensure enough space for content */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #eee;
+  background: #f4f4f4;
   text-align: center;
-  padding: 0 2em;
+  padding: 40px 2em;
+  margin-bottom: 20px; /* Add space between sections */
 }
 
 .sticky-slider__slide h1 {
-  font-size: 2rem;
-  margin: 0;
-  letter-spacing: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .sticky-slider__slide h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #777;
+  opacity: 0.8;
+}
+
+.sticky-slider__slide p {
   font-size: 1rem;
-  letter-spacing: 0.3rem;
-  opacity: 0.6;
+  color: #555;
+  max-width: 800px;
+  line-height: 1.6;
 }
 
 .sticky-slider__tab.active {
   color: #fff;
-  background-color: #007bff;
+  background-color: #522258;
 }
