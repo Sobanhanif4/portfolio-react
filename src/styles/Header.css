@@ -29,6 +29,10 @@
     /* align-items: center; */
   }
   
+  .contact-nav-link {
+  font-size: 28px;
+  }
+
   .nav-link:hover {
     color: #8b5891; 
   }

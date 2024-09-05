@@ -30,14 +30,17 @@ const Header = () => {
         >
           About
         </Link>
-        <Link
-        to="/contact"
-        className={`footer-link ${currentPath === "/contact" ? "active" : " "}`}
-        >
-          <MdOutlineContactPhone />
-
-        </Link>
       </nav>
+      <div className="">
+        <Link
+          to="/contact"
+          className={`footer-link ${
+            currentPath === "/contact" ? "active" : " "
+          }`}
+        >
+          <MdOutlineContactPhone className="contact-nav-link"/>
+        </Link>
+      </div>
     </header>
   );
 };
