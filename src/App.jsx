@@ -1,28 +1,24 @@
-// src/App.jsx
+// App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
 import Home from "./pages/Home";
 import AboutPage from "./pages/AboutPage";
 import ProjectsPage from "./pages/ProjectsPage";
-import Footer from "./components/Footer";
-// import CtaButton from "./components/CtaButton";
 import Contact from "./pages/Contact";
+import Layout from "./pages/components/Layout";
 
 const App = () => {
   return (
     <Router>
-      <Header />
       <Routes>
-        {/* Define routes for different pages */}
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/contact" element={<Contact />} />
-        
+        {/* Use the Layout component to wrap the routes */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="projects" element={<ProjectsPage />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
       </Routes>
-      
-      <Footer />
     </Router>
   );
 };
