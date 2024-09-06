@@ -31,3 +31,14 @@
 .story-section a:hover {
   text-decoration: underline;
 }
+
+/* MEDIA QUERY */
+
+@media (min-width: 769px) and (max-width: 1278px) {
+  .story-section {
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 1000px;
+    margin: auto;
+  }
+}

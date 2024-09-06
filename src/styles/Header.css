@@ -1,4 +1,3 @@
-/* src/styles/Header.css */
 .header {
     display: flex;
     justify-content: space-between;
@@ -26,7 +25,6 @@
     color: black;
     font-size: 18px;
     font-weight: 400;
-    /* align-items: center; */
   }
   
   .contact-nav-link {
@@ -36,4 +34,20 @@
   .nav-link:hover {
     color: #8b5891; 
   }
+
+  /* Media Queries */
+
+  @media (min-width: 769px) and (max-width: 1278px) {
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      padding: 20px 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    
+  }
+  
   

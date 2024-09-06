@@ -96,3 +96,24 @@
 .footer-copy-p {
   margin-bottom: 15px;
 }
+
+/* MEDIA QUERY */
+
+@media (min-width: 769px) and (max-width: 1278px) {
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    grid-template-rows: 1fr 1fr; /* Two equal rows */
+    padding: 20px 40px;
+    max-width: 1000px;
+    margin: auto;
+    height: 150px; /* Adjust as needed */
+    position: relative; /* Ensures the positioning is relative to the footer */
+    margin-bottom: 40px;
+    margin-top: 50px;
+  }
+
+  .footer-copy{
+    margin-left: 0px;
+  }
+}

@@ -85,3 +85,15 @@
   color: #4e525a;
   letter-spacing: 0.5px;
 }
+
+  /* Media Queries */
+
+@media (min-width: 769px) and (max-width: 1278px) {
+  .experience-section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: auto;
+    width: 1000px;
+  }
+}

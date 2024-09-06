@@ -24,5 +24,19 @@
     font-size: 22px;
     color: #555;
   }
+
+  /* Media Queries */
+
+
+
+@media (min-width: 769px) and (max-width: 1278px) {
+  .projects-image {
+    width: 100%;
+    margin-bottom: 15px;
+    height: 215px !important;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+}
   
 

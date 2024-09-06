@@ -42,3 +42,12 @@
   .skills-span {
     color: #522258;
   }
+
+
+  @media (min-width: 769px) and (max-width: 1278px) {
+    .skills-section {
+      padding: 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
+  }
