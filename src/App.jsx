@@ -6,7 +6,8 @@ import Home from "./pages/Home";
 import AboutPage from "./pages/AboutPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import Footer from "./components/Footer";
-import CtaButton from "./components/CtaButton";
+// import CtaButton from "./components/CtaButton";
+import Contact from "./pages/Contact";
 
 const App = () => {
   return (
@@ -17,6 +18,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/contact" element={<Contact />} />
+        
       </Routes>
       
       <Footer />

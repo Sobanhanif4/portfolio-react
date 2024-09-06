@@ -10,7 +10,7 @@ const HeroSection = () => {
         <h2>Hey, I'm Soban 👋</h2>
         <h1> <span className='frontend'>Front</span>end Developer</h1>
         <p>
-          I'm a frontend developer based in Italy, I'll help you build beautiful websites your users will love.
+          I'm a frontend developer based in Pakistan, I'll help you build beautiful websites your users will love.
         </p>
        <CtaButton />
       </div>
