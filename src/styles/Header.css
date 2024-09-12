@@ -37,14 +37,14 @@
 
   /* Media Queries */
 
-  @media (min-width: 769px) and (max-width: 1278px) {
+  @media (min-width: 769px) {
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background-color: #fff;
       padding: 20px 40px;
-      max-width: 1000px;
+      max-width: 850px;
       margin: auto;
     }
     

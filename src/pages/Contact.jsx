@@ -2,40 +2,8 @@ import "../styles/ContactPage.css";
 import { CgMail } from "react-icons/cg";
 import { MdCall } from "react-icons/md";
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    query: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs.sendForm(
-      "service_3fkoklg", // Replace with your service ID
-      "template_raib3lj", // Replace with your template ID
-      e.target,
-      "RpaGgBG_YuBI5XoPW" // Replace with your user ID
-    )
-    .then((result) => {
-      console.log('Email successfully sent!', result.text);
-      alert('Your message has been sent successfully!');
-    }, (error) => {
-      console.log('Failed to send email. Error:', error.text);
-      alert('Failed to send your message. Please try again.');
-    });
-
-    e.target.reset();
-  };
 
   return (
     <>
@@ -65,29 +33,6 @@ const Contact = () => {
           <p className=".contact-email-num">+92 3352881869</p>
         </div>
       </div>
-
-      <form onSubmit={sendEmail} className="contact-form">
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="query">Your Query:</label>
-          <textarea
-            name="query"
-            value={formData.query}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Send</button>
-      </form>
     </>
   );
 };
