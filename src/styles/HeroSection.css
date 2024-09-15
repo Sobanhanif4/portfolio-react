@@ -54,8 +54,7 @@
 
     @media (min-width: 769px) {
       .hero-section {
-        flex-direction: column; /* Stack items vertically on smaller screens */
-        /* text-align: center;  */
+        flex-direction: column; 
       }
     
       .hero-content {
