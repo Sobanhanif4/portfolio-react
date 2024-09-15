@@ -20,9 +20,9 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 4px; /* Width of the scrollbar line */
+  width: 4px; 
   height: 100%;
-  background-color: rgb(170, 145, 170); /* Default color of the scrollbar */
+  background-color: rgb(170, 145, 170); 
 }
 
 .sidebar-link {
