@@ -31,7 +31,7 @@
   color: #555;
   transition: color 0.3s ease;
   position: relative;
-  margin-left: 10px; /* Add spacing to align with the scrollbar */
+  margin-left: 10px; 
   font-size: 22px;
 }
 
@@ -43,10 +43,10 @@
 .sidebar-link.active::before {
   content: '';
   position: absolute;
-  left: -10px; /* Position of the highlight relative to the sidebar-link */
-  width: 4px; /* Width of the active highlight line */
+  left: -10px; 
+  width: 4px; 
   height: 100%;
-  background-color: purple; /* Color of the highlighted scrollbar */
+  background-color: purple; 
 }
 
 .experience-details {
