@@ -1,4 +1,3 @@
-// src/pages/ProjectsPage.jsx
 import React, { useRef, useEffect } from "react";
 import "../styles/ProjectsPage.css"; // Import CSS styles
 
