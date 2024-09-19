@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as d3 from "d3";
 import * as topojson from "topojson-client";
-import "../../styles/Globe.css"; // Adjust the path if needed
+import "../../styles/Globe.css"; 
 
 const Globe = () => {
   useEffect(() => {
@@ -13,7 +13,7 @@ const Globe = () => {
       colors: {
         water: "#24262f",
         land: "#424447",
-        pakistan: "#00FF00", // Green color for Pakistan
+        pakistan: "#00FF00", 
         hover: "#eee",
       },
     };
