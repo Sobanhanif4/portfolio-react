@@ -90,6 +90,8 @@
   /* Make nav visible when menu is open */
   .nav.open {
     display: flex;
+    width: 80%;
+    margin: auto;
   }
 
   /* Navigation link styling */

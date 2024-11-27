@@ -48,11 +48,12 @@ const HeroSection = () => {
           I'm a frontend developer based in Pakistan, I'll help you build
           beautiful websites your users will love.
         </p>
-        <CtaButton />
+        
       </div>
       <div className="hero-image">
         <img src="/mine.png" alt="Profile" />
       </div>
+      <CtaButton />
     </section>
   );
 };

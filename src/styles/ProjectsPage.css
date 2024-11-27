@@ -1,91 +1,163 @@
+.productPage-h1-p {
+  width: 1200px;
+  margin: auto;
+  margin-bottom: 50px;
+  margin-top: -75px;
+}
+
+.productPage-h1 {
+  font-size: 90px;
+  letter-spacing: -3.6px;
+  font-weight: bold;
+  color: #24262f;
+  margin-bottom: -32px;
+}
+
+.productPage-h1 span {
+  color: #522258;
+}
+
+.productPage-p {
+  font-size: 24px;
+  width: 760px;
+  color: #4e525a;
+}
+
+.projects-page {
+  width: 100%;
+  position: relative;
+  overflow-y: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.project-slide {
+  width: 1200px;
+  /* height: 100vh; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* opacity: 0; */
+  position: relative;
+  margin: auto;
+  border: 0px solid;
+  /* margin-top: 50px; */
+}
+
+.project-slide.active {
+  opacity: 1; 
+  z-index: 1; 
+  width: 1200px;
+}
+
+.project-content {
+  width: 100%;
+  /* max-width: 800px; */
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  text-align: center;
+  margin: 40px 0;
+  height: 850px;
+}
+
+.project-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.project-info {
+  margin-top: 10px;
+  width: 800px;
+}
+
+.project-info h2 {
+  margin: 0 0 10px;
+  font-size: 56px;
+  color: #333;
+  text-align: left;
+}
+
+.project-info p {
+  margin: 0;
+  font-size: 24px;
+  color: #666;
+  text-align: left;
+  color: #4e525a;
+}
+
+@media (min-width: 769px) and (max-width: 1278px) {
+}
+@media (max-width: 768px) {
+  @media (max-width: 768px) {
+  
+    /* Product Page Header Adjustments */
     .productPage-h1-p {
-    width: 1200px;
-    margin: auto;
-    margin-bottom: 50px;
-    margin-top: -75px;
-  }
-
-  .productPage-h1 {
-    font-size: 90px;
-    letter-spacing: -3.6px;
-    font-weight: bold;
-    color: #24262f;
-    margin-bottom: -32px;
-  }
-
-  .productPage-h1 span{
-    color: #522258;
-  }
-
-  .productPage-p {
-    font-size: 24px;
-    width: 760px;
-    color: #4e525a;
-  }
-
-  .projects-page {
-    width: 100%;
-    position: relative;
-    overflow-y: auto;
-    margin-top: 100px;
-    margin-bottom: 100px;
+      width: 90%; /* Make the header container full-width on mobile */
+      margin-top: -40px; /* Adjust the top margin to avoid excess space */
+      margin-bottom: 30px; /* Reduce bottom margin for better spacing */
+    }
+  
+    .productPage-h1 {
+      font-size: 45px; /* Smaller font size for mobile */
+      margin-bottom: -20px; 
+    }
+  
+    .productPage-p {
+      font-size: 16px; /* Smaller font size for mobile */
+      width: 100%; /* Allow text to take the full width */
+      margin-bottom: 20px; /* Add space below the paragraph */
+    }
+  
+    /* Adjust Projects Page Container */
+    .projects-page {
+      margin-top: 50px; /* Reduce top margin for mobile */
+      margin-bottom: 50px; /* Reduce bottom margin for mobile */
+    }
+  
+    /* Adjust Project Slide */
+    .project-slide {
+      width: 100%; /* Make the slide container full-width on mobile */
+      margin: auto; /* Keep the margin auto to center content */
+    }
+  
+    .project-slide.active {
+      width: 100%; /* Ensure active slide takes full width */
+    }
+  
+    /* Project Content */
+    .project-content {
+      width: 80%; /* Full width on mobile */
+      margin: 20px 0; /* Reduced margin to avoid large gaps */
+      height: auto; /* Allow content height to adjust dynamically */
+    }
+  
+    /* Adjust Project Image */
+    .project-image {
+      width: 100%; /* Make sure images take full width on mobile */
+      height: auto; /* Ensure images maintain their aspect ratio */
+      margin-bottom: 10px; /* Adjust bottom margin to prevent excess space */
+    }
+  
+    /* Adjust Project Info */
+    .project-info {
+      width: 100%; /* Ensure project info takes full width on mobile */
+      margin-top: 20px; /* Add space above the text */
+    }
+  
+    .project-info h2 {
+      font-size: 24px; /* Reduce the font size for h2 on mobile */
+      margin-bottom: 10px; /* Reduce space below the heading */
+    }
+  
+    .project-info p {
+      font-size: 16px; /* Reduce font size of paragraph text */
+      color: #4e525a; /* Ensure text is visible with the appropriate color */
+      margin-bottom: 15px; /* Add space below the paragraph */
+    }
   }
   
-  .project-slide {
-    width: 1200px;
-    /* height: 100vh; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* opacity: 0; */
-    position: relative;
-    margin: auto;
-    border: 0px solid; 
-    /* margin-top: 50px; */
-  }
-  
-  .project-slide.active {
-    opacity: 1; /* Make active slides visible */
-    z-index: 1; /* Ensure active slides are on top */
-    width: 1200px;
-  }
-  
-  .project-content {
-    width: 100%;
-    /* max-width: 800px; */
-    padding: 20px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    text-align: center;
-    margin: 40px 0;
-    height: 850px;
-  }
-  
-  .project-image {
-    width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-    border-radius: 8px;
-  }
-  
-  .project-info {
-    margin-top: 10px;
-    width: 800px;
-  }
-  
-  .project-info h2 {
-    margin: 0 0 10px;
-    font-size: 56px;
-    color: #333;
-    text-align: left;
-  }
-  
-  .project-info p {
-    margin: 0;
-    font-size: 24px;
-    color: #666;
-    text-align: left;
-    color: #4e525a;
-  }
-  
+}

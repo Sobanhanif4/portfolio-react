@@ -15,6 +15,10 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="header">
       <div className="logo">sobanH.</div>
@@ -31,18 +35,21 @@ const Header = () => {
         <Link
           to="/"
           className={`footer-link ${currentPath === "/" ? "active" : ""}`}
+          onClick={closeMenu}
         >
           Home
         </Link>
         <Link
           to="/projects"
           className={`footer-link ${currentPath === "/projects" ? "active" : ""}`}
+          onClick={closeMenu}
         >
           Projects
         </Link>
         <Link
           to="/about"
           className={`footer-link ${currentPath === "/about" ? "active" : ""}`}
+          onClick={closeMenu}
         >
           About
         </Link>

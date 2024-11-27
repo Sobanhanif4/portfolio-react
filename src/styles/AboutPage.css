@@ -38,7 +38,6 @@
   
   #scroll-container {
     background-color: #e0e0e0;
-    border-radius: 10px;
     padding: 27px;
     overflow: hidden;
     width: 100%; 
@@ -94,5 +93,174 @@
       transform: translateX(100%); 
     }
   } 
+
+ /* Mobile and Tablet Responsive Styles */
+@media (max-width: 768px) {
+
+  /* Globe and Scroll Container */
+  .globe-and-scroll-container {
+    display: grid;
+    grid-template-columns: 1fr;  /* Stack columns on mobile */
+    gap: 15px; /* Increase gap for better spacing */
+    align-items: start;
+    width: 80%;  /* Make container full width */
+    margin: 20px auto;
+  }
+
+  /* Adjust the width of header and paragraph containers */
+  .abt-h1-p-h4 {
+    width: 80%;  /* Full width */
+    margin: 0 auto;  /* Center align */
+  }
+
+  /* Adjust Heading */
+  .abt-h1 {
+    font-size: 45px;  /* Smaller font for mobile */
+    margin-bottom: -10px;
+  }
+
+  /* Adjust the span color for header */
+  .abt-span {
+    color: #522258;
+  }
+
+  /* Adjust h4 */
+  .abt-h4 {
+    font-size: 18px;  /* Smaller font size */
+    color: #24262f;
+  }
+
+  /* Adjust paragraph text */
+  .abt-p {
+    font-size: 16px;  /* Smaller font size */
+    color: #4e525a;
+  }
+
+  /* Scroll Container Adjustments */
+  #scroll-container {
+    width: 100%;  /* Full width on mobile */
+    padding: 20px; 
+    max-width: 100%;  /* Max width 100% */
+  }
+
+  /* Scroll Row */
+  .scroll-row {
+    padding: 10px 0;
+    font-size: 14px;  /* Smaller font size for scroll text */
+  }
+
+  /* Scroll Row Direction */
+  .scroll-row-left {
+    animation: scroll-left-to-right 30s linear infinite;
+  }
+  
+  .scroll-row-right {
+    animation: scroll-right-to-left 30s linear infinite;
+  }
+
+  /* Adjust scroll text styling */
+  .scroll-text {
+    font-size: 14px;  /* Smaller font size */
+    padding: 8px 15px;  /* Reduced padding */
+    margin: 0 5px;  /* Reduced margin */
+    border-radius: 15px;  /* Slightly smaller radius */
+  }
+
+  /* Adjust icon size */
+  .star-icon {
+    font-size: 16px;  /* Smaller icon size */
+    margin: 0 5px;  /* Reduced margin */
+  }
+
+  /* Adjust animations for mobile */
+  @keyframes scroll-left-to-right {
+    0% {
+      transform: translateX(100%); 
+    }
+    100% {
+      transform: translateX(-100%); 
+    }
+  }
+
+  @keyframes scroll-right-to-left {
+    0% {
+      transform: translateX(-100%); 
+    }
+    100% {
+      transform: translateX(100%); 
+    }
+  }
+}
+
+/* Tablet (769px to 1278px) */
+@media (min-width: 769px) and (max-width: 1278px) {
+
+  /* Globe and Scroll Container */
+  .globe-and-scroll-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  /* Keep two columns for tablets */
+    gap: 20px;
+    align-items: start;
+    width: 100%;  /* Full width */
+    margin: 20px auto;
+  }
+
+  /* Adjust the width of header and paragraph containers */
+  .abt-h1-p-h4 {
+    width: 90%;  /* 90% width for tablets */
+    margin: 0 auto;
+  }
+
+  /* Adjust Heading */
+  .abt-h1 {
+    font-size: 56px;  /* Smaller font size for tablets */
+    margin-bottom: -10px;
+  }
+
+  /* Adjust h4 */
+  .abt-h4 {
+    font-size: 22px;  /* Slightly larger font for tablets */
+  }
+
+  /* Adjust paragraph text */
+  .abt-p {
+    font-size: 18px;  /* Slightly larger font for tablets */
+  }
+
+  /* Scroll Container Adjustments */
+  #scroll-container {
+    width: 100%;
+    padding: 20px;
+    max-width: 100%;  /* Full width */
+  }
+
+  /* Scroll Row */
+  .scroll-row {
+    font-size: 16px;  /* Slightly larger font */
+  }
+
+  .scroll-row-left {
+    animation: scroll-left-to-right 30s linear infinite;
+  }
+  
+  .scroll-row-right {
+    animation: scroll-right-to-left 30s linear infinite;
+  }
+
+  /* Adjust scroll text styling */
+  .scroll-text {
+    font-size: 16px;  /* Larger font size for tablets */
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 20px;
+  }
+
+  /* Adjust icon size */
+  .star-icon {
+    font-size: 18px;  /* Larger icon size */
+    margin: 0 10px;
+  }
+
+}
 
   

@@ -1,11 +1,13 @@
+/* Container for the sticky slider */
 .sticky-slider__container {
   width: 100%;
   max-width: 1200px;
   margin: auto;
   padding: 20px;
-  position: relative;
+  position: relative; /* Relative positioning for inner sticky elements */
 }
 
+/* Title styling */
 .sticky-slider__title {
   font-size: 56px;
   color: #24262f;
@@ -17,15 +19,20 @@
   color: #522258;
 }
 
+/* Tab Container - Make it sticky */
 .sticky-slider__tabsContainer {
   display: flex;
   position: sticky;
-  top: 0;
+  top: 0; /* Stick to the top of the page when scrolling */
   background: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 10;
+  width: 100%;
+  /* Make sure it's horizontally aligned */
+  flex-wrap: nowrap;
 }
 
+/* Tab Styles */
 .sticky-slider__tab {
   flex: 1;
   text-align: center;
@@ -48,12 +55,13 @@
   transition: left 0.3s, width 0.3s;
 }
 
+/* Main Content Styling */
 .sticky-slider__main {
   padding: 20px;
 }
 
 .sticky-slider__slide {
-  min-height: 80vh; 
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -61,7 +69,7 @@
   background: #f4f4f4;
   text-align: center;
   padding: 40px 2em;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .sticky-slider__slide h1 {
@@ -84,7 +92,49 @@
   line-height: 1.6;
 }
 
+/* Active Tab Style */
 .sticky-slider__tab.active {
   color: #fff;
   background-color: #522258;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .sticky-slider__container {
+    width: 85%; /* Reduce width for smaller screens */
+  }
+
+  .sticky-slider__slide {
+    min-height: 50vh; /* Adjust slide height for mobile */
+  }
+
+  /* No need for vertical tabs on mobile, keeping them horizontal */
+  .sticky-slider__tabsContainer {
+    display: flex;
+    position: sticky;
+    top: 0; /* Stick to the top of the page when scrolling */
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .sticky-slider__tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    color: #000;
+    text-decoration: none;
+    transition:  0.3s, color 0.3s;
+  }
+  
+  .sticky-slider__tabSlider {
+    position: absolute;
+    bottom: 0;
+    height: 4px;
+    background: #522258;
+    transition: left 0.3s, width 0.3s;
+  }
+  
 }
