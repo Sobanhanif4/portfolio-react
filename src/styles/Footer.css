@@ -40,9 +40,9 @@
   margin-top: 15px;
 }
 
-.cta-p{
+.cta-p {
   font-size: 22px;
-  color: #4E525a;
+  color: #4e525a;
 }
 
 .cta-p-span {
@@ -70,13 +70,12 @@
   color: #333; /* Darker color for the links */
   font-size: 18px;
   font-weight: 500;
-  color: #4E525a;
-
+  color: #4e525a;
 }
 
 .footer-link.active {
-  color: #522258; 
-  font-weight: 600; 
+  color: #522258;
+  font-weight: 600;
 }
 
 .footer-link:hover {
@@ -113,7 +112,101 @@
     margin-top: 50px;
   }
 
-  .footer-copy{
+  .footer-copy {
     margin-left: 0px;
   }
 }
+
+/* MEDIA QUERY for mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .footer {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+    padding: 15px 20px;
+    max-width: 80%; /* Ensure the footer takes the full width */
+    margin: auto;
+    height: auto; /* Adjust height as per content */
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
+
+  /* Footer navigation links */
+  .footer-nav {
+    display: flex;
+    gap: 15px; 
+    justify-content: center; 
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  /* Social icons */
+  .social-icons {
+    display: flex;
+    justify-content: center; /* Center social icons horizontally */
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  /* Adjust CTA section for mobile */
+  .cta-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the text */
+    justify-content: center;
+    width: 100%; /* Full width */
+    margin-top: 15px;
+  }
+
+  .cta-p {
+    font-size: 14px; /* Adjust font size for mobile */
+    color: #4E525a;
+    text-align: center; /* Center the text */
+  }
+
+  .cta-p-span {
+    color: #522258;
+    font-weight: bold;
+  }
+
+  /* Footer copyright */
+  .footer-copy {
+    text-align: center; /* Center the copyright text */
+    font-size: 14px; /* Smaller font size for mobile */
+    color: #777;
+    margin-top: 10px;
+  }
+
+  /* Footer links */
+  .footer-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px; /* Adjust font size for mobile */
+    font-weight: 500;
+    color: #4E525a;
+    margin-bottom: 10px;
+  }
+
+  .footer-link.active {
+    color: #522258;
+    font-weight: bold;
+  }
+
+  .footer-link:hover {
+    color: #522258;
+  }
+
+  /* Social icon styling */
+  .social-icon {
+    color: #333;
+    font-size: 18px; /* Adjust icon size for mobile */
+  }
+
+  .social-icon:hover {
+    color: #522258;
+  }
+}
+
+
+

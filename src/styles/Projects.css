@@ -91,28 +91,105 @@
   }
   
   .project-card:nth-child(1) {
-    width: 400px;
+    width: 350px;
   }
   
   .project-card:nth-child(2) {
-    width: 450px;
+    width: 400px;
     /* margin-right: 60px; */
   }
   .projects-grid-sep-products .project-card:nth-child(1) {
-    width: 450px; 
+    width: 400px; 
   }
   
   .projects-grid-sep-products .project-card:nth-child(2) {
-    width: 400px; 
+    width: 350px; 
   }
   
   .projects-h2 {
     font-size: 56px;
     margin: auto;
-    width: 1000px;
+    width: 810px;
     margin-bottom: 25px;
-    margin-top: 100px;
     color: #24262f;
+  }
+}
+
+/* Media query for screens below 769px (Mobile devices) */
+@media (max-width: 768px) {
+
+  
+  .projects-section {
+    max-width: 80%; 
+    background-color: #e0e0e0;
+    border-radius: 8px; 
+    padding: 20px; 
+  }
+
+  /* Project Cards: Make cards full width */
+  .project-card {
+    width: 100%; 
+    margin-bottom: 20px; 
+  }
+
+  /* Grid for Projects: Single column layout for mobile */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* One column for mobile */
+    gap: 15px; /* Reduce gap for mobile */
+    padding: 15px 10px; /* Padding adjusted for mobile */
+    margin-left: 0; /* No extra left margin */
+  }
+
+  .projects-grid-sep-products {
+    display: grid;
+    grid-template-columns: 1fr; /* One column for mobile */
+    gap: 15px;
+    padding: 15px 10px;
+    margin-left: 0;
+  }
+
+  /* Individual project card width (if needed) */
+  .project-card:nth-child(1),
+  .project-card:nth-child(2) {
+    width: 95%; /* Ensure both cards take full width */
+  }
+
+  .projects-grid-sep-products .project-card:nth-child(1),
+  .projects-grid-sep-products .project-card:nth-child(2) {
+    width: 95%; /* Ensure full width for both cards in separated grid */
+  }
+
+  /* Heading size for projects section on mobile */
+  .projects-h2 {
+    font-size: 45px; /* Smaller font size for mobile */
+    width: 80%;
+    text-align: left; 
+    margin-bottom: 20px;
+    margin-top: 0px;
+    color: #24262f;
+  }
+
+  /* Other minor adjustments for better spacing */
+  .project-card {
+    padding: 10px; /* Padding inside each project card */
+    background-color: #fff; /* Make the card background white */
+    border-radius: 8px; /* Smaller border radius for cards on mobile */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for cards */
+  }
+
+
+  /* Make sure text is readable and well-spaced in mobile cards */
+  .project-card h3 {
+    font-size: 18px; /* Smaller heading size for cards */
+    margin-bottom: 8px;
+    color: #333;
+  }
+
+  .project-card p {
+    font-size: 14px; /* Reduce font size for mobile text */
+    line-height: 1.5;
+    color: #666;
   }
 }
 

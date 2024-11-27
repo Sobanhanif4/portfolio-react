@@ -38,5 +38,12 @@
     border-radius: 20px;
   }
 }
+@media (max-width: 768px) {
+  .projects-image {
+    height: 176px !important;
+}
+
+}
+
   
 

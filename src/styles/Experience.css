@@ -94,6 +94,57 @@
     flex-direction: column;
     padding: 20px;
     margin: auto;
-    width: 1000px;
+    width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .experience-section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: auto;
+    width: 80%;
+  }
+
+  .exp-p {
+    font-size: 8px;
+    margin-bottom: 20px;
+    font-weight: 200;
+  }
+  
+  .exp-li {
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 17px;
+    color: #4e525a;
+    letter-spacing: 0.2px;
+  }
+
+  .exp-h2{
+    font-size: 40px;
+    color: #24262f;
+  }
+  .sidebar {
+    width: 100px;
+    margin-right: 20px;
+    position: relative;
+  }
+  .scrollbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px; 
+    height: 100%;
+  }
+  .sidebar-link {
+    padding: 10px;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.3s ease;
+    position: relative;
+    margin-left: 10px; 
+    font-size: 15px;
   }
 }

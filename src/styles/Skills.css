@@ -51,3 +51,15 @@
       margin: auto;
     }
   }
+
+  @media (max-width: 768px) {
+    .skills-section h2 {
+      font-size: 40px;
+    }
+    .skills-category h3 {
+      font-size: 18px;
+    }
+    .skills-category li {
+      font-size: 14px;
+    }
+  }

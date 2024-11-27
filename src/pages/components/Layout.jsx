@@ -8,13 +8,13 @@ const Layout = () => {
   const showFooter = location.pathname !== "/contact";
 
   return (
-    <div>
+    <>
       <Header />
       <main>
         <Outlet /> {/* Renders the current route's component */}
       </main>
       {showFooter && <Footer />}
-    </div>
+    </>
   );
 };
 

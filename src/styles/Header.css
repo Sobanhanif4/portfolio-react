@@ -1,53 +1,134 @@
+/* General Header Styles */
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px 40px;
+  width: 80%;
+  margin: auto;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #8b5891;
+}
+
+.contact-nav-link {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+/* Hamburger Icon Styles */
+.hamburger {
+  display: none; /* Hide by default */
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.hamburger div {
+  height: 4px;
+  background-color: #24262F;
+  width: 100%;
+  border-radius: 2px;
+}
+
+/* Media Queries for Smaller Screens (Tablets and Mobile) */
+@media (max-width: 768px) {
+  /* Header adjustments */
+  .header {
+    padding: 15px 20px;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
-    padding: 20px 40px;
-    max-width: 1200px;
     margin: auto;
   }
-  
+
+  /* Logo adjustments */
   .logo {
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 1rem;
   }
-  
+
+  /* Hide the navigation by default on mobile */
+  .nav {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  /* Make nav visible when menu is open */
+  .nav.open {
+    display: flex;
+  }
+
+  /* Navigation link styling */
+  .footer-link {
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .footer-link:hover {
+    background-color: #f0f0f0;
+    color: #8b5891;
+  }
+
+  /* Contact link adjustments */
+  .contact-nav-link {
+    font-size: 20px;
+  }
+
+  /* Hamburger icon */
+  .hamburger {
+    display: flex; /* Show the hamburger on mobile */
+  }
+}
+
+/* Media Queries for Tablets and Larger Screens */
+@media (min-width: 769px) {
   .nav {
     display: flex;
     gap: 20px;
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .nav-link {
-    text-decoration: none;
-    color: black;
-    font-size: 18px;
-    font-weight: 400;
-  }
-  
-  .contact-nav-link {
-  font-size: 28px;
+    flex-direction: row;
   }
 
-  .nav-link:hover {
-    color: #8b5891; 
+  /* Hide the hamburger icon on larger screens */
+  .hamburger {
+    display: none;
   }
-
-  /* Media Queries */
-
-  @media (min-width: 769px) {
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #fff;
-      padding: 20px 40px;
-      max-width: 850px;
-      margin: auto;
-    }
-    
-  }
-  
-  
+}
