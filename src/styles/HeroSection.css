@@ -1,83 +1,15 @@
-/* src/styles/HeroSection.css
-.hero-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 40px;
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  .frontend {
-    color: #522258;
-    font-weight: bold;
-  }
-  .hero-content {
-    font-size: 14px;
-  }
-  .hero-content h2{
-    margin-top: 100px;
-    margin-bottom: -80px;
-    max-width: 60%;
-    font-size: 24px;
-    font-weight: 200;
-    letter-spacing: -2px;
-    color: #4E525a;
-  }
-  
-  .hero-content h1 {
-    letter-spacing: -2.9px;
-    font-size: 90px;
-    color: #24262F; 
-    font-weight: bold;
-    line-height: 1;
-    margin-bottom: 50px;
-  }
-  
-  .hero-content p {
-    margin-top: -20px;
-    max-width: 60%;
-    font-size: 24px;
-    font-weight: 300;
-    color: #4e525a;
-  }
-  
-  .hero-image img {
-    border-radius: 50%;
-    width: 350px;
-    height: 350px;
-    object-fit: cover;
-
-  }
-  
-   
-
-
-    @media (max-width: 769px) {
-      .hero-section {
-        flex-direction: column; 
-      }
-    
-      .hero-content {
-        margin-bottom: 20px; 
-      }
-    
-      .hero-image {
-        margin: 0; 
-      }
-    } */
 
 .hero-section {
   display: flex;
-  justify-content: space-between; /* Moves the text and image to opposite sides */
-  align-items: center; /* Vertically centers the content */
+  justify-content: space-between; 
+  align-items: center; 
   padding: 40px;
   width: 1200px;
   margin: auto;
 }
 
 .hero-content {
-  max-width: 60%; /* Limits the text width */
+  max-width: 60%;
 }
 
 .hero-content h2 {
@@ -116,7 +48,7 @@
   object-fit: cover;
 }
 
-/* Media Queries for responsiveness */
+
 @media (min-width: 769px) and (max-width: 1280px) {
   .hero-section {
     flex-direction: column; /* Stacks the text and image vertically */
@@ -171,8 +103,8 @@
 @media (max-width: 768px) {
 
   .hero-section {
-    flex-direction: column; /* Stacks the text and image vertically */
-    text-align: center; /* Centers the content */
+    flex-direction: column; 
+    text-align: center; 
     width: 90%;
     margin: auto;
   }
@@ -185,6 +117,7 @@
   .hero-image {
     margin: 30px 0; 
     margin-right: 50px;
+    /* transform: scaleX(-1); */
   }
 
   .hero-image img {
@@ -215,5 +148,9 @@
     font-size: 16px;
     font-weight: 300;
     color: #4e525a;
+  }
+
+  .cta-mobile {
+    margin: auto;
   }
 }

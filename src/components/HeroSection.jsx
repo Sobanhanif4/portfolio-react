@@ -1,42 +1,23 @@
-// import React from "react";
-// import "../styles/HeroSection.css";
-// import CtaButton from "./CtaButton";
-
-
-
-// const HeroSection = () => {
-//   return (
-//     <section className="hero-section">
-//       <div className="hero-content">
-//         <h2>Hey, I'm Soban 👋</h2>
-//         <h1>
-//           {" "}
-//           <span className="frontend">Front</span>end Developer
-//         </h1>
-//         <p>
-//           I'm a frontend developer based in Pakistan, I'll help you build
-//           beautiful websites your users will love.
-//         </p>
-//         <div className="hero-image">
-//         <img src="/mine.png" alt="Profile" />
-//       </div>
-//         <CtaButton />
-        
-//       </div>
-      
-      
-//     </section>
-//   );
-// };
-
-// export default HeroSection;
-
-
-import React from "react";
-import "../styles/HeroSection.css";
+import React, { useState, useEffect } from 'react'; import "../styles/HeroSection.css";
 import CtaButton from "./CtaButton";
 
 const HeroSection = () => {
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // Update window width on resize
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+
+    // Set up event listener
+    window.addEventListener('resize', handleResize);
+
+    // Clean up event listener
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <section className="hero-section">
       <div className="hero-content">
@@ -48,12 +29,31 @@ const HeroSection = () => {
           I'm a frontend developer based in Pakistan, I'll help you build
           beautiful websites your users will love.
         </p>
-        
+        <div className="cta-button-container">
+          {windowWidth > 768 ? (
+            <div> {/* Render something specific for mobile */}
+              <CtaButton />
+            </div>
+          ) : (
+            <div> {/* Render something for desktop */}
+
+            </div>
+          )}
+        </div>
       </div>
       <div className="hero-image">
-        <img src="/mine.png" alt="Profile" />
+        <img src="public/soban_img.png" alt="Profile" />
       </div>
-      <CtaButton />
+
+      <div className='cta-mobile'>
+        {windowWidth < 768 ? (
+          <div> {/* Render something specific for mobile */}
+            <CtaButton />
+          </div>
+        ) : (
+          " "
+        )}
+      </div>
     </section>
   );
 };

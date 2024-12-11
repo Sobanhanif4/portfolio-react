@@ -21,9 +21,7 @@ const Contact = () => {
         <div className="contact-image">
           <img src="/mine.png" alt="Profile" />
         </div>
-      </section>
-
-      <div className="contact-email-num">
+        <div className="contact-email-num">
         <div className="contact-email">
           <CgMail fontSize="30px" />
           <p className="contact-email-p">sobanatban4@gmail.com</p>
@@ -33,6 +31,9 @@ const Contact = () => {
           <p className=".contact-email-num">+92 3352881869</p>
         </div>
       </div>
+      </section>
+
+      
     </>
   );
 };
