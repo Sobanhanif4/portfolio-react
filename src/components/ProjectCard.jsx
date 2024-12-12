@@ -5,7 +5,7 @@ import '../styles/ProjectCard.css';
 
 const ProjectCard = ({ id, title, description, image }) => {
   return (
-    <Link to={`/project/${id}`} className="project-card-link"> {/* Adding Link for routing */}
+    <Link to={`/project/${id}`} className="project-card-link"> 
       <div className="project-card">
         <img src={image} alt={title} className="projects-image" />
         <h3>{title}</h3>

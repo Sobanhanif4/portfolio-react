@@ -7,7 +7,7 @@ const projects = [
     id: 1,
     title: "FoodyHub",
     description: "A modern restaurant discovery platform with search, reviews, and ratings.",
-    imageUrl: "public/foodyHub1.png",
+    imageUrl: "/foodyHub1.png",
 },
 {
     id: 2,
