@@ -7,7 +7,7 @@ const Projects = () => {
       title: "FoodyHub",
       description:
         "An intuitive food ordering platform with easy-to-navigate menus, and a seamless, mobile-friendly design.",
-      image: "public/foodyHub1.png",
+      image: "foodyHub1.png",
     },
     {
       title: "SuzCom-Ecom",

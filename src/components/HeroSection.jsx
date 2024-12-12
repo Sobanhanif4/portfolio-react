@@ -42,7 +42,7 @@ const HeroSection = () => {
         </div>
       </div>
       <div className="hero-image">
-        <img src="public/soban_img.png" alt="Profile" />
+        <img src="soban_img.png" alt="Profile" />
       </div>
 
       <div className='cta-mobile'>
