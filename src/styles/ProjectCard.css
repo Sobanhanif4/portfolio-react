@@ -1,49 +1,75 @@
-
 .project-card {
-    background-color: white;
-    /* padding: 20px; */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .projects-image {
-    width: 100%;
-    margin-bottom: 15px;
-    height: 315px !important;
-    object-fit: cover;
-    border-radius: 20px;
-  }
-  
-  .project-card h3 {
-    font-size: 24px;
-    color: #522258;
-  }
-  
-  .project-card p {
-    font-size: 22px;
-    color: #555;
-  }
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
 
-  /* Media Queries */
+/* New styles for the link wrapper */
+.project-card-link {
+  text-decoration: none; /* Remove the default link underline */
+  color: inherit; /* Ensure text color is inherited from the parent */
+}
 
+/* Ensure that when hovering over the card, it reacts */
+.project-card:hover {
+  transform: translateY(-5px); /* Slight lift effect */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow effect */
+}
 
+/* Image styles */
+.projects-image {
+  width: 100%;
+  margin-bottom: 15px;
+  height: 315px !important;
+  object-fit: cover;
+  border-radius: 20px;
+}
 
+/* Title and Description styles */
+.project-card h3 {
+  font-size: 24px;
+  color: #522258;
+}
+
+.project-card p {
+  font-size: 18px;
+  color: #555;
+}
+
+/* Media Queries */
+
+/* For tablets and small desktops */
 @media (min-width: 769px) and (max-width: 1278px) {
-  .projects-image {
-    width: 100%;
-    margin-bottom: 15px;
-    height: 215px !important;
-    object-fit: cover;
-    border-radius: 20px;
-  }
+.projects-image {
+  width: 100%;
+  margin-bottom: 15px;
+  height: 215px !important;
+  object-fit: cover;
+  border-radius: 20px;
 }
+
+.project-card h3 {
+  font-size: 22px;
+}
+
+.project-card p {
+  font-size: 20px;
+}
+}
+
+/* For mobile devices */
 @media (max-width: 768px) {
-  .projects-image {
-    height: 176px !important;
+.projects-image {
+  height: 176px !important;
 }
 
+.project-card h3 {
+  font-size: 18px; /* Smaller font size on mobile */
 }
 
-  
-
+.project-card p {
+  font-size: 16px; /* Adjust paragraph font size on mobile */
+}
+}
