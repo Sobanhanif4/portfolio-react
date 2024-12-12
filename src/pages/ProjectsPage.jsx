@@ -5,32 +5,29 @@ import "../styles/ProjectsPage.css"; // Import CSS styles
 const projects = [
   {
     id: 1,
-    title: "FoodieFinder",
-    description:
-      "Modern-looking restaurant discovery platform featuring real-time search, reviews, and ratings.",
+    title: "FoodyHub",
+    description: "A modern restaurant discovery platform with search, reviews, and ratings.",
     imageUrl: "public/foodyHub1.png",
-  },
-  {
+},
+{
     id: 2,
-    title: "EventPlanner",
-    description:
-      "Event planning web application, enabling users to organize and manage events effortlessly.",
+    title: "SuzCom-Ecom",
+    description: "An e-commerce platform for browsing products and managing cart quantities.",
     imageUrl: "vanila_e_com.png",
-  },
-  {
+},
+{
     id: 3,
-    title: "EcoCart",
-    description:
-      "E-commerce platform promoting eco-friendly products with payment integration.",
+    title: "Plum Builders",
+    description: "Real estate platform with a sleek UI for browsing and interacting with property listings.",
     imageUrl: "plumBuilders.png",
-  },
-  {
+},
+{
     id: 4,
-    title: "TaskFlow",
-    description:
-      "Task management system with drag-and-drop, real-time collaboration, and responsive layout.",
+    title: "Blogging Fullstack Web",
+    description: "A full-stack blogging platform built with MERN for managing posts and comments.",
     imageUrl: "mern_blogging.png",
-  },
+},
+
 ];
 
 const ProjectsPage = () => {

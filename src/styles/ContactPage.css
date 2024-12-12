@@ -47,7 +47,7 @@
 .contact-email-num {
   width: 700px;
   margin: auto;
-  /* margin-top: -70px; */
+  margin-top: 50px;
   font-size: 18px;
   color: #4e525a;
 }
@@ -63,12 +63,12 @@
   display: flex;
   gap: 20px;
   align-items: center;
+  margin-top: 25px;
 }
 
 .contact-email-p {
   font-size: 18px;
   color: #4e525a;
-
 }
 
 @media (max-width: 768px) {
@@ -105,7 +105,7 @@
   }
 
   .contact-num {
-    margin-top: -20px;
+    margin-top: 22px;
  
 }
 }

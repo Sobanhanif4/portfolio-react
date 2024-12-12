@@ -39,6 +39,7 @@
 
 .hero-image {
   margin-left: 20px; /* Adds space between the text and the image */
+  margin-top: 50px;
 }
 
 .hero-image img {
