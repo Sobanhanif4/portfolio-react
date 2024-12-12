@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "../styles/ProjectsPage.css"; // Import CSS styles
 
 const projects = [
@@ -7,28 +8,28 @@ const projects = [
     title: "FoodieFinder",
     description:
       "Modern-looking restaurant discovery platform featuring real-time search, reviews, and ratings.",
-    imageUrl: "minepic.png",
+    imageUrl: "public/foodyHub1.png",
   },
   {
     id: 2,
     title: "EventPlanner",
     description:
       "Event planning web application, enabling users to organize and manage events effortlessly.",
-    imageUrl: "minepic.png",
+    imageUrl: "vanila_e_com.png",
   },
   {
     id: 3,
     title: "EcoCart",
     description:
       "E-commerce platform promoting eco-friendly products with payment integration.",
-    imageUrl: "minepic.png",
+    imageUrl: "plumBuilders.png",
   },
   {
     id: 4,
     title: "TaskFlow",
     description:
       "Task management system with drag-and-drop, real-time collaboration, and responsive layout.",
-    imageUrl: "minepic.png",
+    imageUrl: "mern_blogging.png",
   },
 ];
 
@@ -76,23 +77,24 @@ const ProjectsPage = () => {
           </p>
         </div>
         {projects.map((project, index) => (
-          <div
-            key={project.id}
-            className="project-slide"
-            ref={(el) => (projectRefs.current[index] = el)}
-          >
-            <div className="project-content">
-              <img
-                src={project.imageUrl}
-                alt={project.title}
-                className="project-image"
-              />
-              <div className="project-info">
-                <h2>{project.title}</h2>
-                <p>{project.description}</p>
+          <Link to={`/project/${project.id}`} key={project.id}>
+            <div
+              className="project-slide"
+              ref={(el) => (projectRefs.current[index] = el)}
+            >
+              <div className="project-content">
+                <img
+                  src={project.imageUrl}
+                  alt={project.title}
+                  className="project-image"
+                />
+                <div className="project-info">
+                  <h2>{project.title}</h2>
+                  <p>{project.description}</p>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </>

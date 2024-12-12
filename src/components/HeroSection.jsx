@@ -23,11 +23,11 @@ const HeroSection = () => {
       <div className="hero-content">
         <h2>Hey, I'm Soban 👋</h2>
         <h1>
-          <span className="frontend">Front</span>end Developer
+          <span className="frontend">Web</span> Developer
         </h1>
         <p>
-          I'm a frontend developer based in Pakistan, I'll help you build
-          beautiful websites your users will love.
+        I’m a web developer based in Pakistan, dedicated to helping
+         you create beautiful, user-friendly websites that your audience will love.
         </p>
         <div className="cta-button-container">
           {windowWidth > 768 ? (

@@ -4,28 +4,29 @@ import "../styles/Projects.css";
 const Projects = () => {
   const projects = [
     {
-      title: "TaskFlow",
+      title: "FoodyHub",
       description:
-        "Task management system with drag-and-drop, real-time collaboration, and responsive layout.",
-      image: "minepic.png",
+        "An intuitive food ordering platform with easy-to-navigate menus, and a seamless, mobile-friendly design.",
+      image: "public/foodyHub1.png",
     },
     {
-      title: "EcoCart",
+      title: "SuzCom-Ecom",
       description:
-        "E-commerce platform promoting eco-friendly products with payment integration.",
-      image: "minepic.png",
+        "An e-commerce platform featuring eco-friendly products, with a smooth add-to-cart experience and full CRUD functionality for managing products.",
+      image: "vanila_e_com.png",
     },
     {
-      title: "EventPlanner",
+      title: "PlumBuilders",
       description:
-        "Event planning web application, enabling users to organize and manage events effortlessly.",
-      image: "minepic.png",
+        "An interactive real estate platform with a sleek, user-friendly interface",
+      image: "plumBuilders.png",
     },
     {
-      title: "FoodieFinder",
+      title: "Blog-MERN",
       description:
-        "Modern-looking restaurant discovery platform featuring real-time search, reviews, and ratings.",
-      image: "minepic.png",
+        "A blog platform featuring real-time content updates, interactive comments, and easy navigation for readers to explore and engage with posts.",
+
+      image: "mern_blogging.png",
     },
   ];
 

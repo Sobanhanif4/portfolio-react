@@ -6,6 +6,7 @@ import AboutPage from "./pages/AboutPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import Contact from "./pages/Contact";
 import Layout from "./pages/components/Layout";
+import ProjectDetailPage from "./pages/ProjectDetailPage"; // Import the new ProjectDetailPage component
 
 const App = () => {
   return (
@@ -16,6 +17,10 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="projects" element={<ProjectsPage />} />
+          
+          {/* Add the dynamic route for project details */}
+          <Route path="project/:projectId" element={<ProjectDetailPage />} />
+          
           <Route path="contact" element={<Contact />} />
         </Route>
       </Routes>
