@@ -24,16 +24,15 @@ const Experience = () => {
       ],
     },
     
-    // {
-    //   company: 'Spotify',
-    //   position: 'Engineer @ Spotify',
-    //   period: 'May 2015 – May 2016',
-    //   tasks: [
-    //     'Developed and optimized data-driven applications for user analytics.',
-    //     'Enhanced music streaming features to improve user experience.',
-    //     'Worked with a cross-functional team to deploy new app features.',
-    //   ],
-    // },
+    {
+      company: 'E-Soft Hub',
+      position: 'Web Developer',
+      period: 'May 2015 – May 2016',
+      tasks: [
+        'Developed and optimized agency website.',
+        'Enhanced features to improve user experience.',
+      ],
+    },
     
   ];
 

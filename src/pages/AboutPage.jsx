@@ -68,7 +68,7 @@ const AboutPage = () => {
       </div>
 
       <Story />
-      <AnimatedExperience />
+      {/* <AnimatedExperience /> */}
     </>
   );
 };
