@@ -130,9 +130,10 @@
   
     /* Project Content */
     .project-content {
-      width: 80%; /* Full width on mobile */
+      width: 73%; /* Full width on mobile */
       margin: 20px 0; /* Reduced margin to avoid large gaps */
       height: auto; /* Allow content height to adjust dynamically */
+      padding: 15px;
     }
   
     /* Adjust Project Image */
