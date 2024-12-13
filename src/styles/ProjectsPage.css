@@ -96,14 +96,16 @@
   
     /* Product Page Header Adjustments */
     .productPage-h1-p {
-      width: 90%; /* Make the header container full-width on mobile */
+      width: 80%; /* Make the header container full-width on mobile */
       margin-top: -40px; /* Adjust the top margin to avoid excess space */
       margin-bottom: 30px; /* Reduce bottom margin for better spacing */
+      
     }
   
     .productPage-h1 {
-      font-size: 45px; /* Smaller font size for mobile */
+      font-size: 40px; /* Smaller font size for mobile */
       margin-bottom: -20px; 
+      
     }
   
     .productPage-p {
@@ -159,6 +161,8 @@
       color: #4e525a; /* Ensure text is visible with the appropriate color */
       margin-bottom: 15px; /* Add space below the paragraph */
     }
+
+    
   }
   
 }
