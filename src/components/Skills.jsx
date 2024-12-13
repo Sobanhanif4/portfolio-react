@@ -3,8 +3,9 @@ import '../styles/Skills.css';
 const Skills = () => {
   const skills = {
     webDesign: ['UI/UX Design', 'Responsive Design', 'Wireframing', 'User Research'],
-    frontend: ['JavaScript', 'ReactJS', 'Next.js', 'CSS3'],
-    backend: ['Node.js', 'MongoDB', 'Express.js', 'Vercel'],
+    frontend: ['JavaScript', 'ReactJS', 'Bootstrap', 'Chakra UI', 'WordPress', 'Bootstrap'],
+    backend: ['Node.js', 'MongoDB', 'Express.js', 'Firebase'],
+    ecommerce: ['Shopify', 'WooCommerce'],
     softSkills: ['Effective communication', 'Collaboration', 'Commitment', 'Leadership'],
   };
 
@@ -37,6 +38,14 @@ const Skills = () => {
           </ul>
         </div>
         <div className="skills-category">
+          <h3>E-commerce Platforms</h3>
+          <ul>
+            {skills.ecommerce.map((skill, index) => (
+              <li key={index}>{skill}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="skills-category">
           <h3>Soft Skills</h3>
           <ul>
             {skills.softSkills.map((skill, index) => (
@@ -44,6 +53,7 @@ const Skills = () => {
             ))}
           </ul>
         </div>
+       
       </div>
     </section>
   );

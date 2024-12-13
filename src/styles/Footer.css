@@ -128,7 +128,7 @@
     margin: auto;
     height: auto; /* Adjust height as per content */
     position: relative;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     margin-top: 30px;
   }
 
@@ -156,7 +156,7 @@
     align-items: center; /* Center the text */
     justify-content: center;
     width: 100%; /* Full width */
-    margin-top: 15px;
+    margin-top: -15px;
   }
 
   .cta-p {
@@ -176,6 +176,7 @@
     font-size: 14px; /* Smaller font size for mobile */
     color: #777;
     margin-top: 10px;
+    padding: 25px 0px 0px 0px;
   }
 
   /* Footer links */
@@ -185,7 +186,6 @@
     font-size: 14px; /* Adjust font size for mobile */
     font-weight: 500;
     color: #4E525a;
-    margin-bottom: 10px;
   }
 
   .footer-link.active {
