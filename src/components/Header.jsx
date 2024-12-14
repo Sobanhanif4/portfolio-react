@@ -21,8 +21,9 @@ const Header = () => {
 
   return (
     <header className="header">
+      <Link to="/">
       <div className="logo">sobanH.</div>
-
+      </Link>
       {/* Hamburger icon */}
       <div className="hamburger" onClick={toggleMenu}>
         <div></div>
