@@ -1,6 +1,9 @@
 import "../styles/ContactPage.css";
 import { CgMail } from "react-icons/cg";
 import { MdCall } from "react-icons/md";
+import ContactForm from '../components/ContactForm';
+import "../styles/ContactForm.css";
+
 
 const Contact = () => {
 
@@ -21,7 +24,7 @@ const Contact = () => {
           <img src="/mine.png" alt="Profile" />
         </div>
 
-        <div className="contact-email-num">
+        {/* <div className="contact-email-num">
           <div className="contact-email">
 
             <CgMail fontSize="30px" />
@@ -32,6 +35,10 @@ const Contact = () => {
             <MdCall fontSize="30px" />
             <a href="tel:+923352881869" className=".contact-email-num">+92 3352881869</a>
           </div>
+        </div> */}
+
+        <div className="contact-form-div">
+          <ContactForm />
         </div>
       </section>
 
