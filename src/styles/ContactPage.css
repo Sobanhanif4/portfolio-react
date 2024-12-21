@@ -75,7 +75,7 @@
   .contact-section {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
+    /* margin-top: 40px; */
   }
 
   .contact-content h1 {
