@@ -28,13 +28,21 @@
 }
 
 @media (max-width: 768px) {
+  .hero-buttons {
+    gap: 10px;
+    display: flex;
+    margin: auto;
+    width: 1200px;
+    
+  }
+  
   .btn {
     padding: 6px 7px;
     font-size: 14px;
     font-weight: 600;
   }
   .btn-primary {
-    margin-left: 55px;
+    margin-left: 47px;
     border-radius: 10px;
   }
   .btn-secondary {
