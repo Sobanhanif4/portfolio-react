@@ -1,6 +1,4 @@
 import "../styles/ContactPage.css";
-import { CgMail } from "react-icons/cg";
-import { MdCall } from "react-icons/md";
 import ContactForm from '../components/ContactForm';
 import "../styles/ContactForm.css";
 import Footer from "../components/Footer";
@@ -23,19 +21,6 @@ const Contact = () => {
         <div className="contact-image">
           <img src="/mine.png" alt="Profile" />
         </div>
-
-        {/* <div className="contact-email-num">
-          <div className="contact-email">
-
-            <CgMail fontSize="30px" />
-            <a href="mailto:sobanatban4@gmail.com?subject=Getting%20In%20Touch&body=Hello,%20I%20would%20like%20to%20get%20in%20touch%20with%20you." className="contact-email-p">sobanatban4@gmail.com</a>
-          </div>
-
-          <div className="contact-num">
-            <MdCall fontSize="30px" />
-            <a href="tel:+923352881869" className=".contact-email-num">+92 3352881869</a>
-          </div>
-        </div> */}
 
         <div className="contact-form-div">
           <ContactForm />
