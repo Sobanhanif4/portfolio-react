@@ -96,18 +96,17 @@
   margin-bottom: 15px;
 }
 
-/* MEDIA QUERY */
 
 @media (min-width: 769px) and (max-width: 1278px) {
   .footer {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
-    grid-template-rows: 1fr 1fr; /* Two equal rows */
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
     padding: 20px 40px;
     max-width: 1000px;
     margin: auto;
-    height: 150px; /* Adjust as needed */
-    position: relative; /* Ensures the positioning is relative to the footer */
+    height: 150px; 
+    position: relative; 
     margin-bottom: 40px;
     margin-top: 50px;
   }
@@ -128,9 +127,7 @@
     margin: auto;
     height: auto; /* Adjust height as per content */
     position: relative;
-    /* margin-bottom: 20px; */
-    /* margin-top: 30px; */
-    /* margin-left: 10px; */
+    
   }
 
   /* Footer navigation links */
@@ -170,10 +167,9 @@
   .footer-copy {
     text-align: center; 
     font-size: 12px;
-    margin-top: 10px;
+    margin: 10px 1px -15px 0px;
     padding: 25px 0px 0px 0px;
     width: 100%;
-    margin-left: 0px;
   }
 
   /* Footer links */
