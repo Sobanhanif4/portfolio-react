@@ -31,6 +31,7 @@ const ContactForm = () => {
     return formErrors;
   };
 
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const formErrors = validate();
@@ -42,7 +43,7 @@ const ContactForm = () => {
     }
   };
 
-  
+
 return (
     <form id="contact-form" action={import.meta.env.VITE_REACT_APP_FORMSPREE_URL} method="POST" onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
