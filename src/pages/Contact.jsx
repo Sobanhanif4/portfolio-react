@@ -3,7 +3,7 @@ import { CgMail } from "react-icons/cg";
 import { MdCall } from "react-icons/md";
 import ContactForm from '../components/ContactForm';
 import "../styles/ContactForm.css";
-
+import Footer from "../components/Footer";
 
 const Contact = () => {
 
@@ -17,7 +17,7 @@ const Contact = () => {
           </h1>
           <p>
             Looking to partner or work together? Reach out through the form and
-            I'll get back to you in the next 48 hours.
+            I'll get back to you instantly.
           </p>
         </div>
         <div className="contact-image">
@@ -41,7 +41,7 @@ const Contact = () => {
           <ContactForm />
         </div>
       </section>
-
+      <Footer />
 
     </>
   );

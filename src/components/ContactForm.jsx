@@ -42,23 +42,23 @@ const ContactForm = () => {
     }
   };
 
-  return (
-    <form id="contact-form" action="https://formspree.io/f/xdkoqqag" method="POST" onSubmit={handleSubmit}>
-      <label htmlFor="name">Name:</label>
-      <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
-      {errors.name && <span className="error">{errors.name}</span>}
-      
-      <label htmlFor="email">Email:</label>
-      <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
-      {errors.email && <span className="error">{errors.email}</span>}
-      
-      <label htmlFor="message">Message:</label>
-      <textarea id="message" name="message" value={formData.message} onChange={handleChange} required></textarea>
-      {errors.message && <span className="error">{errors.message}</span>}
-      
-      <button type="submit">Send</button>
+return (
+    <form id="contact-form" action={import.meta.env.VITE_REACT_APP_FORMSPREE_URL} method="POST" onSubmit={handleSubmit}>
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
+        {errors.name && <span className="error">{errors.name}</span>}
+        
+        <label htmlFor="email">Email:</label>
+        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+        {errors.email && <span className="error">{errors.email}</span>}
+        
+        <label htmlFor="message">Message:</label>
+        <textarea id="message" name="message" value={formData.message} onChange={handleChange} required></textarea>
+        {errors.message && <span className="error">{errors.message}</span>}
+        
+        <button type="submit">Send</button>
     </form>
-  );
+);
 };
 
 export default ContactForm;

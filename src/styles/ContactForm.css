@@ -45,3 +45,9 @@
     border-color: #522258;
     outline: none;
 }
+
+@media (max-width: 768px) {
+    .contact-form-div {
+      width: 90%;
+    }
+}
