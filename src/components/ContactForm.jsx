@@ -31,7 +31,7 @@ const ContactForm = () => {
     return formErrors;
   };
 
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formErrors = validate();
