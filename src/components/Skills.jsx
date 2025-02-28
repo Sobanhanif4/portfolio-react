@@ -13,14 +13,14 @@ const Skills = () => {
     <section className="skills-section">
       <h2>Skills<span className='skills-span'>.</span></h2>
       <div className="skills-grid">
-        <div className="skills-category">
+        {/* <div className="skills-category">
           <h3>Web Design</h3>
           <ul>
             {skills.webDesign.map((skill, index) => (
               <li key={index}>{skill}</li>
             ))}
           </ul>
-        </div>
+        </div> */}
         <div className="skills-category">
           <h3>Frontend</h3>
           <ul>

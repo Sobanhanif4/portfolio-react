@@ -11,6 +11,9 @@ const ContactForm = () => {
 
   const [errors, setErrors] = useState({});
 
+  // Log the environment variable to ensure it's correctly loaded
+  console.log("Formspree URL: ", import.meta.env.VITE_REACT_APP_FORMSPREE_URL);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -43,6 +46,7 @@ const ContactForm = () => {
     }
   };
 
+  
 
 return (
     <form id="contact-form" action={import.meta.env.VITE_REACT_APP_FORMSPREE_URL} method="POST" onSubmit={handleSubmit}>
