@@ -2,7 +2,7 @@ import '../styles/Skills.css';
 
 const Skills = () => {
   const skills = {
-    webDesign: ['UI/UX Design', 'Responsive Design', 'Wireframing', 'User Research'],
+    // webDesign: ['UI/UX Design', 'Responsive Design', 'Wireframing', 'User Research'],
     frontend: ['JavaScript', 'ReactJS', 'Bootstrap', 'Chakra UI', 'WordPress', 'Bootstrap'],
     backend: ['Node.js', 'MongoDB', 'Express.js', 'Firebase'],
     ecommerce: ['Shopify', 'WooCommerce'],
