@@ -10,7 +10,7 @@ const ChatWidget = () => {
   // Function to call the backend and fetch response from Langflow
   const callLangflowAPI = async (msg) => {
     try {
-      const response = await fetch('http://localhost:3000/api/langflow', {
+      const response = await fetch('https://sobansuz.onrender.com/api/langflow', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -99,5 +99,3 @@ const ChatWidget = () => {
 };
 
 export default ChatWidget;
-
-
