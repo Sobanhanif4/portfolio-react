@@ -25,10 +25,7 @@ const ChatWidget = () => {
       console.log('Frontend received:', data);
 
       // Extract the bot's message from the deeply nested response
-      const botMessage =
-        data.outputs?.[0]?.outputs?.[0]?.messages?.[0]?.message ||
-        data.outputs?.[0]?.outputs?.[0]?.outputs?.message?.message ||
-        "Bot did not return a readable message.";
+      const botMessage = data.output_value || "Bot did not return a readable message.";
 
       return botMessage;
     } catch (error) {
