@@ -55,6 +55,8 @@ import cors from 'cors';
 
 dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 3001; // ✅ Add this line
+
 app.use(cors());
 app.use(express.json());
 
@@ -69,7 +71,6 @@ app.post('/api/chat', async (req, res) => {
   const { message, clientId = 'user_1' } = req.body;
 
   try {
-    // Initialize conversation if it doesn't exist
     if (!clientConversations[clientId]) {
       clientConversations[clientId] = {
         userMessages: [],
@@ -77,10 +78,8 @@ app.post('/api/chat', async (req, res) => {
       };
     }
 
-    // Store the conversation message from the user
     clientConversations[clientId].userMessages.push(message);
 
-    // ✅ Chat request to OpenAI to get the bot's response
     const chatResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -88,13 +87,13 @@ app.post('/api/chat', async (req, res) => {
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo', // or 'gpt-4'
+        model: 'gpt-3.5-turbo',
         messages: [
           {
             role: 'system',
             content: `
 You are a professional customer support assistant for E-SoftHub. Your goal is to collect information about the client's needs for an AI commercial, including service type, target audience, budget, and any other specific requirements. Use this information to generate a summary of the client's needs once enough information is provided.
-          `.trim(),
+            `.trim(),
           },
           {
             role: 'user',
@@ -108,15 +107,14 @@ You are a professional customer support assistant for E-SoftHub. Your goal is to
     const data = await chatResponse.json();
     const botReply = data.choices?.[0]?.message?.content || 'No response';
 
-    // Store the bot's reply
     clientConversations[clientId].botReplies.push(botReply);
 
-    // Check if the conversation is complete enough to generate a summary
-    // (e.g., If we have collected service type, target audience, budget, and deadline)
-    if (clientConversations[clientId].userMessages.length > 3) { // Arbitrary threshold (3 messages here)
-      const conversationSummary = await generateConversationSummary(clientConversations[clientId].userMessages, clientConversations[clientId].botReplies);
+    if (clientConversations[clientId].userMessages.length > 3) {
+      const conversationSummary = await generateConversationSummary(
+        clientConversations[clientId].userMessages,
+        clientConversations[clientId].botReplies
+      );
 
-      // Send the conversation data to Google Sheets along with the AI-generated summary
       await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -124,12 +122,11 @@ You are a professional customer support assistant for E-SoftHub. Your goal is to
           timestamp: new Date().toISOString(),
           clientId,
           userMessage: clientConversations[clientId].userMessages.join(" "),
-          botReply: botReply,
-          notes: conversationSummary, // AI-generated summary
+          botReply,
+          notes: conversationSummary,
         }),
       });
 
-      // Reset conversation for this client after processing
       delete clientConversations[clientId];
     }
 
@@ -168,7 +165,7 @@ Conversation:
 ${conversationText}
 
 Summary:
-          `.trim(),
+            `.trim(),
           },
         ],
         max_tokens: 200,
@@ -191,6 +188,12 @@ Summary:
     return 'Could not generate summary';
   }
 }
+
+// ✅ Final line to start the server on the defined port
+app.listen(PORT, () => {
+  console.log(`Server listening on http://localhost:${PORT}`);
+});
+
 
 
 
