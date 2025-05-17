@@ -69,11 +69,16 @@ app.post('/api/chat', async (req, res) => {
   const { message, clientId = 'user_1' } = req.body;
 
   try {
-    // Store the conversation for the client
+    // Initialize conversation if it doesn't exist
     if (!clientConversations[clientId]) {
-      clientConversations[clientId] = [];
+      clientConversations[clientId] = {
+        userMessages: [],
+        botReplies: [],
+      };
     }
-    clientConversations[clientId].push(message);
+
+    // Store the conversation message from the user
+    clientConversations[clientId].userMessages.push(message);
 
     // ✅ Chat request to OpenAI to get the bot's response
     const chatResponse = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -103,9 +108,13 @@ You are a professional customer support assistant for E-SoftHub. Your goal is to
     const data = await chatResponse.json();
     const botReply = data.choices?.[0]?.message?.content || 'No response';
 
+    // Store the bot's reply
+    clientConversations[clientId].botReplies.push(botReply);
+
     // Check if the conversation is complete enough to generate a summary
-    if (clientConversations[clientId].length > 3) { // Arbitrary threshold (e.g., 3 messages)
-      const conversationSummary = await generateConversationSummary(clientConversations[clientId]);
+    // (e.g., If we have collected service type, target audience, budget, and deadline)
+    if (clientConversations[clientId].userMessages.length > 3) { // Arbitrary threshold (3 messages here)
+      const conversationSummary = await generateConversationSummary(clientConversations[clientId].userMessages, clientConversations[clientId].botReplies);
 
       // Send the conversation data to Google Sheets along with the AI-generated summary
       await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
@@ -114,11 +123,14 @@ You are a professional customer support assistant for E-SoftHub. Your goal is to
         body: JSON.stringify({
           timestamp: new Date().toISOString(),
           clientId,
-          userMessage: clientConversations[clientId].join(" "),
-          botReply,
+          userMessage: clientConversations[clientId].userMessages.join(" "),
+          botReply: botReply,
           notes: conversationSummary, // AI-generated summary
         }),
       });
+
+      // Reset conversation for this client after processing
+      delete clientConversations[clientId];
     }
 
     res.json({ output_value: botReply });
@@ -129,8 +141,13 @@ You are a professional customer support assistant for E-SoftHub. Your goal is to
 });
 
 // Generate a summary of the conversation using OpenAI GPT
-async function generateConversationSummary(conversation) {
+async function generateConversationSummary(userMessages, botReplies) {
   try {
+    const conversationText = userMessages.map((msg, i) => {
+      return `User: ${msg}\nBot: ${botReplies[i] || 'No reply from bot'}\n`;
+    }).join("\n");
+
+    // Request summary from OpenAI
     const summaryResponse = await fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
@@ -143,11 +160,11 @@ async function generateConversationSummary(conversation) {
 Summarize the following conversation and generate a description of what the client needs for an AI commercial. Include service type, target audience, budget, and any specific notes from the client.
 
 Conversation:
-${conversation.join("\n")}
+${conversationText}
 
 Summary:
         `.trim(),
-        max_tokens: 100,
+        max_tokens: 150,
       }),
     });
 
@@ -162,4 +179,5 @@ Summary:
 app.listen(3001, () => {
   console.log(`Server listening on http://localhost:3001`);
 });
+
 
