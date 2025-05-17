@@ -79,7 +79,7 @@ app.post('/api/chat', async (req, res) => {
 
     // Store the conversation message from the user
     clientConversations[clientId].userMessages.push(message);
-
+    
     // ✅ Chat request to OpenAI to get the bot's response
     const chatResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -143,11 +143,23 @@ You are a professional customer support assistant for E-SoftHub. Your goal is to
 // Generate a summary of the conversation using OpenAI GPT
 async function generateConversationSummary(userMessages, botReplies) {
   try {
+    // Build the conversation text in the proper format.
     const conversationText = userMessages.map((msg, i) => {
       return `User: ${msg}\nBot: ${botReplies[i] || 'No reply from bot'}\n`;
     }).join("\n");
 
-    // Request summary from OpenAI
+    console.log('Conversation Text:', conversationText);
+    // Add clear instructions to the prompt.
+    const prompt = `
+Summarize the following conversation and generate a description of what the client needs for an AI commercial. Include service type, target audience, budget, deadline, and any specific notes from the client.
+
+Conversation:
+${conversationText}
+
+Summary:
+    `.trim();
+
+    // Request summary from OpenAI with improved prompt.
     const summaryResponse = await fetch('https://api.openai.com/v1/completions', {
       method: 'POST',
       headers: {
@@ -155,29 +167,30 @@ async function generateConversationSummary(userMessages, botReplies) {
         Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo', // or 'gpt-4'
-        prompt: `
-Summarize the following conversation and generate a description of what the client needs for an AI commercial. Include service type, target audience, budget, and any specific notes from the client.
-
-Conversation:
-${conversationText}
-
-Summary:
-        `.trim(),
-        max_tokens: 150,
+        model: 'gpt-3.5-turbo', // You can try 'gpt-4' as well
+        prompt: prompt,
+        max_tokens: 150,  // Adjust tokens if necessary
+        temperature: 0.7,  // Keeps responses coherent but creative
       }),
     });
 
+    // Check if the response is successful
     const summaryData = await summaryResponse.json();
-    return summaryData.choices[0].text.trim();
+    const summary = summaryData.choices[0]?.text?.trim();
+
+    // Check if we got a valid summary
+    if (summary) {
+      return summary;
+    } else {
+      console.error('No summary generated');
+      return 'Could not generate summary';
+    }
+
   } catch (error) {
     console.error('Error generating summary:', error);
     return 'Could not generate summary';
   }
 }
 
-app.listen(3001, () => {
-  console.log(`Server listening on http://localhost:3001`);
-});
 
 
