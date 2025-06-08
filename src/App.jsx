@@ -38,14 +38,14 @@ import ProjectsPage from "./pages/ProjectsPage";
 import Contact from "./pages/Contact";
 import Layout from "./pages/components/Layout";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
-import ChatWidgetPage from "./pages/ChatWidgetPage"; // ⬅️ new import
+import ChatOnlyPage from "./pages/ChatOnlyPage";
 
 const App = () => {
   return (
     <Router>
       <Routes>
         {/* Chatbot route — outside the Layout */}
-        <Route path="/chat-widget" element={<ChatWidgetPage />} />
+        <Route path="/chat-widget" element={<ChatOnlyPage />} />
 
         {/* Main site routes with layout */}
         <Route path="/" element={<Layout />}>
