@@ -189,7 +189,6 @@ Summary:
   }
 }
 
-// ✅ Final line to start the server on the defined port
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
 });
