@@ -258,61 +258,10 @@ app.post('/api/chat', async (req, res) => {
       clientConversations[clientId] = {
         userMessages: [],
         botReplies: [],
-        hasGreeted: false,
       };
     }
 
-    const fullMessageHistory = [];
-
-    if (!clientConversations[clientId].hasGreeted) {
-      fullMessageHistory.push({
-        role: 'system',
-        content: `
-You are "E-Soft Assistant", a smart, friendly, and professional AI chatbot for the website esofhub.com, the official site of E-Soft Hub (Private) Limited — a digital services company.
-
-Your role is to:
-- Greet website visitors
-- Explain the company’s services
-- Help visitors choose the right package or solution
-- Answer frequently asked questions
-- Collect leads for the sales team
-
-Your tone should be:
-- Friendly and welcoming
-- Professional and confident
-- Clear and to the point
-- Casual when appropriate to build trust
-
-Company services include:
-1. AI-Generated Ads & Commercials
-   - 15–30 second AI video ad for PKR 15,000
-   - Packages:
-     • Basic: 3 AI videos, 10 AI images, Facebook Ads setup & management  
-     • Standard: 5 AI videos, 10 AI images, Facebook Ads creatives + full setup  
-     • Premium: 10 AI videos, 20 AI images, complete Ads creatives + setup
-
-2. AI Chatbots & AI Agents for websites and automation
-3. Development Services (custom web and app solutions)
-
-Instructions:
-- Greet the user only once at the beginning.
-- Never repeat your introduction again during the session.
-- Do not ask the same questions twice.
-- Keep replies under 3 sentences unless asked for more.
-- Guide the user toward next steps like quote, call, or consultation.
-`.trim(),
-      });
-      clientConversations[clientId].hasGreeted = true;
-    } else {
-      fullMessageHistory.push({
-        role: 'system',
-        content: 'The user has already been greeted. Do not repeat the introduction. Answer directly and helpfully.',
-      });
-    }
-
     clientConversations[clientId].userMessages.push(message);
-
-    fullMessageHistory.push({ role: 'user', content: message });
 
     const chatResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -322,13 +271,53 @@ Instructions:
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
-        messages: fullMessageHistory,
+        messages: [
+          {
+            role: 'system',
+            content: `
+You are "E-Soft Assistant", the professional AI chatbot of E-Soft Hub (Private) Limited, a digital services company.
+
+Only introduce yourself at the very beginning of the conversation — do NOT repeat greetings every time.
+
+Your job is to:
+- Answer clearly and concisely
+- Share service and pricing info directly when asked
+- Only ask for name/email once after visitor shows interest
+- Help the visitor decide the best package or offer
+- Suggest a free consultation if visitor is unsure
+
+Company Services:
+1. AI-Generated Ads & Commercials:
+   - PKR 15,000 for one 15–30 second AI video
+   - Packages:
+     • Basic: 3 AI videos, 10 AI images, Facebook Ads setup & management  
+     • Standard: 5 AI videos, 10 AI images, Facebook Ads creatives + setup  
+     • Premium: 10 AI videos, 20 AI images, complete Ads creatives + setup
+
+2. AI Chatbots & AI Agents for automation
+
+3. Development Services for web & app solutions
+
+Tone:
+- Friendly and helpful
+- Professional but casual
+- Always guide user to next step (e.g. more info, request details, consultation)
+
+Avoid repeating intros or asking the same question more than once. You’re not a generic chatbot — you're here to assist and close leads.
+`.trim(),
+          },
+          {
+            role: 'user',
+            content: message,
+          },
+        ],
         temperature: 0.7,
       }),
     });
 
     const data = await chatResponse.json();
     const botReply = data.choices?.[0]?.message?.content || 'No response';
+
     clientConversations[clientId].botReplies.push(botReply);
 
     if (clientConversations[clientId].userMessages.length > 3) {
@@ -398,12 +387,9 @@ Summary:
     const summaryData = await summaryResponse.json();
     const summary = summaryData.choices?.[0]?.message?.content?.trim();
 
-    if (summary) {
-      return summary;
-    } else {
-      return 'Could not generate summary';
-    }
+    return summary || 'Could not generate summary';
   } catch (error) {
+    console.error('Error generating summary:', error);
     return 'Could not generate summary';
   }
 }
