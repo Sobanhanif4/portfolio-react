@@ -271,34 +271,48 @@ app.post('/api/chat', async (req, res) => {
         content: `
 You are "E-Soft Assistant", the professional AI chatbot of E-Soft Hub (Private) Limited, a digital services company.
 
-Only introduce yourself at the very beginning of the conversation. Once introduced, do NOT repeat greetings or introductions. Remember the context of the conversation.
+**Introduction & Memory:**
+- Only introduce yourself at the very beginning of the conversation. Once introduced, do NOT repeat greetings or introductions.
+- Crucially, remember the entire context of the conversation and refer to previous turns.
 
-Your job is to:
-- Act as a lead generation and sales agent.
-- Answer clearly and concisely.
-- Share service and pricing info directly when asked.
-- Only ask for name/email once after visitor shows clear interest in a service or package.
-- Help the visitor decide the best package or offer based on their needs.
-- Suggest a free consultation if the visitor is unsure or needs more personalized guidance.
+**Your Primary Goals (Lead Generation & Sales Agent):**
+1.  **Qualify Leads**: Understand the client's specific needs, potential budget, and urgency.
+2.  **Educate & Propose**: Clearly explain E-Soft Hub's services and suggest the most relevant packages or solutions.
+3.  **Secure Next Steps (The "Deal")**: Guide the client towards a tangible commitment by:
+    * **Booking a Consultation**: Offer a free 15-minute call with an expert for detailed discussions or tailored solutions. This is your preferred "close."
+    * **Requesting a Custom Quote/Proposal**: If their needs are unique or complex.
+    * **Sending Detailed Information**: Offer to email comprehensive details or a portfolio.
 
-Company Services:
-1. AI-Generated Ads & Commercials:
-   - PKR 15,000 for one 15–30 second AI video
-   - Packages:
-     • Basic: 3 AI videos, 10 AI images, Facebook Ads setup & management
-     • Standard: 5 AI videos, 10 AI images, Facebook Ads creatives + setup
-     • Premium: 10 AI videos, 20 AI images, complete Ads creatives + setup
+**Operational Guidelines:**
+- Answer clearly, concisely, and directly.
+- Share service and pricing info directly when asked, referring to the packages provided below.
+- **Actively listen for buying signals or clear interest in a service/package.**
+- **Once clear interest is shown (e.g., asking about a specific package, asking for next steps, expressing a need for a service), proactively pivot to securing contact details for the next step.**
+- **When suggesting a consultation, explicitly ask for Name, Email, and Phone Number.**
+- **When offering to send a custom quote/proposal, explicitly ask for Project Description, Name, and Email.**
+- **When offering to send detailed info, explicitly ask for Email.**
+- Help the visitor decide the best package or offer based on their stated needs.
+- If a client expresses hesitation or objections, politely address them by reiterating benefits, offering alternative solutions, or gently re-proposing a consultation to clarify concerns.
+- Always guide the user to the next logical step.
 
-2. AI Chatbots & AI Agents for automation
+**Company Services:**
+1.  **AI-Generated Ads & Commercials:**
+    * PKR 15,000 for one 15–30 second AI video
+    * Packages:
+        * Basic: 3 AI videos, 10 AI images, Facebook Ads setup & management
+        * Standard: 5 AI videos, 10 AI images, Facebook Ads creatives + setup
+        * Premium: 10 AI videos, 20 AI images, complete Ads creatives + setup
+2.  **AI Chatbots & AI Agents** for automation (e.g., customer service, sales, lead gen bots)
+3.  **Development Services** for custom web & app solutions (e.g., e-commerce, portfolios, business apps)
 
-3. Development Services for web & app solutions
+**Tone:**
+- Friendly, helpful, and professional, yet approachable and casual.
+- Proactive in guiding the conversation towards lead qualification and securing the next step.
 
-Tone:
-- Friendly and helpful.
-- Professional but approachable and casual.
-- Always guide the user to the next logical step (e.g., provide more info, request contact details, suggest a consultation).
-
-Crucially, **avoid repeating intros or asking the same question more than once**. You are here to assist, qualify leads, and close sales opportunities effectively.
+**Avoid:**
+- Repeating intros or asking the same question more than once.
+- Being a generic chatbot; you are a specialist agent for E-Soft Hub.
+- Giving vague answers when precise information (like pricing or packages) is available.
 `.trim(),
       },
       ...clientConversations[clientId], // Spread the existing conversation history here
@@ -314,6 +328,7 @@ Crucially, **avoid repeating intros or asking the same question more than once**
         model: 'gpt-3.5-turbo',
         messages: messagesToSend, // Use the full conversation history
         temperature: 0.7,
+        max_tokens: 300, // Increased max_tokens to allow for more elaborate closing statements
       }),
     });
 
@@ -323,28 +338,57 @@ Crucially, **avoid repeating intros or asking the same question more than once**
     // Add the bot's reply to the conversation history
     clientConversations[clientId].push({ role: 'assistant', content: botReply });
 
-    // Optional: Implement a strategy to manage conversation length or save to Google Sheet
-    // For example, you might want to summarize and clear history after a certain number of turns
-    // or when specific information (like contact details) is gathered.
-    // Your current logic clears history after 3 user messages, which might be too soon
-    // for a continuous sales conversation. Consider adjusting this.
-    if (clientConversations[clientId].length > 6) { // Example: after 3 user and 3 bot messages
-       // Generate summary and save to Google Sheet
-      const conversationSummary = await generateConversationSummary(clientConversations[clientId]);
-      await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          timestamp: new Date().toISOString(),
-          clientId,
-          // Extract last user message for the sheet, or summarize the whole chat
-          userMessage: message,
-          botReply: botReply,
-          notes: conversationSummary,
-        }),
-      });
-      // Optionally clear the conversation history for this client after saving
-      // delete clientConversations[clientId]; // Uncomment if you want to clear history after saving
+    // --- Lead Qualification and Google Sheet Logic ---
+    // Instead of clearing rigidly after X messages, let's think about a "session end" or "lead qualified" trigger.
+    // For now, we'll keep a simple length check, but you can add more sophisticated logic.
+    // E.g., if the bot successfully collected contact info for a consultation, trigger the save.
+
+    // A simple heuristic: if conversation is getting long OR bot just asked for contact info
+    // For a more robust solution, you'd parse botReply for keywords indicating contact info request
+    // or a successful close, or have a frontend button to "End Chat & Submit Lead".
+
+    // For now, let's trigger summary and save if the conversation is > 8 turns (4 user, 4 bot)
+    // AND if the bot has recently asked for contact info (this requires parsing botReply or maintaining state)
+    // OR if the conversation just gets very long, we summarize to avoid token limits.
+    const CONVERSATION_SAVE_THRESHOLD = 8; // Adjust as needed
+    const lastUserMessage = clientConversations[clientId].slice(-2)[0]?.content; // Get last user message
+    const lastBotReply = clientConversations[clientId].slice(-1)[0]?.content;   // Get last bot reply
+
+    // Simple check for contact info request (can be made more sophisticated)
+    const hasAskedForContactInfo = (lastBotReply && (
+        lastBotReply.toLowerCase().includes('email address') ||
+        lastBotReply.toLowerCase().includes('phone number') ||
+        lastBotReply.toLowerCase().includes('name') ||
+        lastBotReply.toLowerCase().includes('consultation') ||
+        lastBotReply.toLowerCase().includes('proposal')
+    ));
+
+    if (clientConversations[clientId].length >= CONVERSATION_SAVE_THRESHOLD || hasAskedForContactInfo) {
+        // Only trigger if we haven't already processed this "session"
+        // This requires tracking if a summary for this clientId has already been sent for the current session
+        // For simplicity, we'll send it if the conditions are met. In a real app, you'd manage session state.
+
+        const conversationSummary = await generateConversationSummary(clientConversations[clientId]);
+
+        await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                timestamp: new Date().toISOString(),
+                clientId: clientId,
+                // Sending the full conversation as a string for context
+                fullConversation: clientConversations[clientId].map(msg => `${msg.role}: ${msg.content}`).join("\n"),
+                // You might extract specific contact info here if the bot manages to collect it
+                summaryNotes: conversationSummary,
+            }),
+        });
+
+        // OPTIONAL: Clear the conversation history for this client after saving.
+        // Uncomment the line below ONLY if you want the chatbot to start fresh after
+        // a significant interaction is logged to the sheet.
+        // Be careful: this will make the bot forget previous turns if the user continues chatting.
+        // A better approach might be to store a 'session_id' and clear based on that, or summarize periodically.
+        // delete clientConversations[clientId];
     }
 
     res.json({ output_value: botReply });
@@ -370,12 +414,19 @@ async function generateConversationSummary(conversationHistory) {
         messages: [
           {
             role: 'system',
-            content: 'You are an assistant that summarizes business conversations, specifically focusing on lead qualification for digital services (AI commercials, chatbots, web/app development).',
+            content: `You are an assistant that summarizes business conversations, specifically focusing on lead qualification for digital services (AI commercials, chatbots, web/app development). Your goal is to extract key information for sales follow-up.`,
           },
           {
             role: 'user',
             content: `
-Summarize the following conversation to identify key client interests, service requirements (e.g., AI video, chatbot, development), potential budget indications, and any expressed deadlines or specific needs. Format the summary to be useful for lead qualification.
+Based on the following conversation, summarize the client's interest and qualification. Focus on:
+-   **Client's Primary Interest/Service Needed**: (e.g., AI Videos, Chatbot, Web Dev, specific package)
+-   **Expressed Needs/Pain Points**: What problem are they trying to solve?
+-   **Buying Signals/Intent**: Did they ask about pricing, next steps, or a consultation?
+-   **Contact Information Collected (if any)**: Name, Email, Phone Number.
+-   **Proposed Next Step**: What did the chatbot offer or secure (e.g., Consultation, Custom Quote, Info via Email)?
+-   **Urgency/Timeline (if mentioned)**:
+-   **Any other relevant notes for a sales agent.**
 
 Conversation:
 ${conversationText}
@@ -384,7 +435,7 @@ Summary:
             `.trim(),
           },
         ],
-        max_tokens: 200,
+        max_tokens: 300, // Increased max_tokens for summary
         temperature: 0.7,
       }),
     });
