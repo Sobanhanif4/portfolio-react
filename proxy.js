@@ -248,20 +248,61 @@ app.use(express.json());
 
 const GOOGLE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx1HGmnVC6OveS2c4tYOMFhpBoPJ7PNL-DJEJHFIndevIztlMm0VxTaQOSMAqwqO-Aw/exec';
 
+// This will store conversation history for each client
 const clientConversations = {};
 
 app.post('/api/chat', async (req, res) => {
   const { message, clientId = 'user_1' } = req.body;
 
   try {
+    // Initialize conversation history for a new client or if it's been cleared
     if (!clientConversations[clientId]) {
-      clientConversations[clientId] = {
-        userMessages: [],
-        botReplies: [],
-      };
+      clientConversations[clientId] = []; // Store messages in a single array
     }
 
-    clientConversations[clientId].userMessages.push(message);
+    // Add the user's current message to the conversation history
+    clientConversations[clientId].push({ role: 'user', content: message });
+
+    // Construct the messages array for the OpenAI API call
+    // This will include the system prompt AND the entire conversation history for the client
+    const messagesToSend = [
+      {
+        role: 'system',
+        content: `
+You are "E-Soft Assistant", the professional AI chatbot of E-Soft Hub (Private) Limited, a digital services company.
+
+Only introduce yourself at the very beginning of the conversation. Once introduced, do NOT repeat greetings or introductions. Remember the context of the conversation.
+
+Your job is to:
+- Act as a lead generation and sales agent.
+- Answer clearly and concisely.
+- Share service and pricing info directly when asked.
+- Only ask for name/email once after visitor shows clear interest in a service or package.
+- Help the visitor decide the best package or offer based on their needs.
+- Suggest a free consultation if the visitor is unsure or needs more personalized guidance.
+
+Company Services:
+1. AI-Generated Ads & Commercials:
+   - PKR 15,000 for one 15–30 second AI video
+   - Packages:
+     • Basic: 3 AI videos, 10 AI images, Facebook Ads setup & management
+     • Standard: 5 AI videos, 10 AI images, Facebook Ads creatives + setup
+     • Premium: 10 AI videos, 20 AI images, complete Ads creatives + setup
+
+2. AI Chatbots & AI Agents for automation
+
+3. Development Services for web & app solutions
+
+Tone:
+- Friendly and helpful.
+- Professional but approachable and casual.
+- Always guide the user to the next logical step (e.g., provide more info, request contact details, suggest a consultation).
+
+Crucially, **avoid repeating intros or asking the same question more than once**. You are here to assist, qualify leads, and close sales opportunities effectively.
+`.trim(),
+      },
+      ...clientConversations[clientId], // Spread the existing conversation history here
+    ];
 
     const chatResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -271,46 +312,7 @@ app.post('/api/chat', async (req, res) => {
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
-        messages: [
-          {
-            role: 'system',
-            content: `
-You are "E-Soft Assistant", the professional AI chatbot of E-Soft Hub (Private) Limited, a digital services company.
-
-Only introduce yourself at the very beginning of the conversation — do NOT repeat greetings every time.
-
-Your job is to:
-- Answer clearly and concisely
-- Share service and pricing info directly when asked
-- Only ask for name/email once after visitor shows interest
-- Help the visitor decide the best package or offer
-- Suggest a free consultation if visitor is unsure
-
-Company Services:
-1. AI-Generated Ads & Commercials:
-   - PKR 15,000 for one 15–30 second AI video
-   - Packages:
-     • Basic: 3 AI videos, 10 AI images, Facebook Ads setup & management  
-     • Standard: 5 AI videos, 10 AI images, Facebook Ads creatives + setup  
-     • Premium: 10 AI videos, 20 AI images, complete Ads creatives + setup
-
-2. AI Chatbots & AI Agents for automation
-
-3. Development Services for web & app solutions
-
-Tone:
-- Friendly and helpful
-- Professional but casual
-- Always guide user to next step (e.g. more info, request details, consultation)
-
-Avoid repeating intros or asking the same question more than once. You’re not a generic chatbot — you're here to assist and close leads.
-`.trim(),
-          },
-          {
-            role: 'user',
-            content: message,
-          },
-        ],
+        messages: messagesToSend, // Use the full conversation history
         temperature: 0.7,
       }),
     });
@@ -318,27 +320,31 @@ Avoid repeating intros or asking the same question more than once. You’re not 
     const data = await chatResponse.json();
     const botReply = data.choices?.[0]?.message?.content || 'No response';
 
-    clientConversations[clientId].botReplies.push(botReply);
+    // Add the bot's reply to the conversation history
+    clientConversations[clientId].push({ role: 'assistant', content: botReply });
 
-    if (clientConversations[clientId].userMessages.length > 3) {
-      const conversationSummary = await generateConversationSummary(
-        clientConversations[clientId].userMessages,
-        clientConversations[clientId].botReplies
-      );
-
+    // Optional: Implement a strategy to manage conversation length or save to Google Sheet
+    // For example, you might want to summarize and clear history after a certain number of turns
+    // or when specific information (like contact details) is gathered.
+    // Your current logic clears history after 3 user messages, which might be too soon
+    // for a continuous sales conversation. Consider adjusting this.
+    if (clientConversations[clientId].length > 6) { // Example: after 3 user and 3 bot messages
+       // Generate summary and save to Google Sheet
+      const conversationSummary = await generateConversationSummary(clientConversations[clientId]);
       await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           timestamp: new Date().toISOString(),
           clientId,
-          userMessage: clientConversations[clientId].userMessages.join(" "),
-          botReply,
+          // Extract last user message for the sheet, or summarize the whole chat
+          userMessage: message,
+          botReply: botReply,
           notes: conversationSummary,
         }),
       });
-
-      delete clientConversations[clientId];
+      // Optionally clear the conversation history for this client after saving
+      // delete clientConversations[clientId]; // Uncomment if you want to clear history after saving
     }
 
     res.json({ output_value: botReply });
@@ -348,11 +354,10 @@ Avoid repeating intros or asking the same question more than once. You’re not 
   }
 });
 
-async function generateConversationSummary(userMessages, botReplies) {
+// Modified generateConversationSummary to accept the full conversation array
+async function generateConversationSummary(conversationHistory) {
   try {
-    const conversationText = userMessages.map((msg, i) => {
-      return `User: ${msg}\nBot: ${botReplies[i] || 'No reply from bot'}\n`;
-    }).join("\n");
+    const conversationText = conversationHistory.map(msg => `${msg.role === 'user' ? 'User' : 'Bot'}: ${msg.content}`).join("\n");
 
     const summaryResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -365,12 +370,12 @@ async function generateConversationSummary(userMessages, botReplies) {
         messages: [
           {
             role: 'system',
-            content: 'You are an assistant that summarizes business conversations about AI commercials.',
+            content: 'You are an assistant that summarizes business conversations, specifically focusing on lead qualification for digital services (AI commercials, chatbots, web/app development).',
           },
           {
             role: 'user',
             content: `
-Summarize the following conversation and generate a description of what the client needs for an AI commercial. Include service type, target audience, budget, deadline, and any specific notes from the client.
+Summarize the following conversation to identify key client interests, service requirements (e.g., AI video, chatbot, development), potential budget indications, and any expressed deadlines or specific needs. Format the summary to be useful for lead qualification.
 
 Conversation:
 ${conversationText}
