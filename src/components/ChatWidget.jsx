@@ -204,8 +204,8 @@
 
 
 import React, { useState, useEffect, useRef } from 'react';
-import ReactMarkdown from 'react-markdown'; // Import ReactMarkdown
-import remarkGfm from 'remark-gfm'; // Optional: for GitHub Flavored Markdown (tables, task lists)
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import '../styles/ChatWidget.css'; // Optional styling
 
 const ChatWidget = () => {
@@ -213,14 +213,13 @@ const ChatWidget = () => {
   const [message, setMessage] = useState('');
   const [responses, setResponses] = useState([]);
   const [loading, setLoading] = useState(false);
-  const chatBodyRef = useRef(null); // Ref for scrolling
+  const chatBodyRef = useRef(null);
 
   // --- Client ID Management ---
   const [clientId, setClientId] = useState(() => {
-    // Initialize clientId from localStorage or generate a new one
     let storedClientId = localStorage.getItem('chatClientId');
     if (!storedClientId) {
-      storedClientId = `user_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`; // Simple unique ID
+      storedClientId = `user_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
       localStorage.setItem('chatClientId', storedClientId);
     }
     return storedClientId;
@@ -228,6 +227,7 @@ const ChatWidget = () => {
 
   // Function to call the backend and fetch response
   const callBackendAPI = async (msg) => {
+    console.log('Frontend: Initiating API call to backend for message:', msg); // DEBUG LOG
     try {
       const response = await fetch('https://sobansuz.onrender.com/api/chat', {
         method: 'POST',
@@ -236,27 +236,28 @@ const ChatWidget = () => {
         },
         body: JSON.stringify({
           message: msg,
-          clientId: clientId, // Send the clientId to the backend
+          clientId: clientId,
         }),
       });
 
       const data = await response.json();
-      console.log('Frontend received:', data);
+      console.log('Frontend: API call successful. Received data:', data); // DEBUG LOG
 
       const botMessage = data.output_value || "Bot did not return a readable message.";
       return botMessage;
     } catch (error) {
-      console.error('API error:', error);
+      console.error('Frontend: API error during fetch:', error); // DEBUG LOG
       return "Oops! Something went wrong while connecting to the AI.";
     }
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Crucial: Prevents default form submission (page reload)
+    console.log('Frontend: handleSubmit triggered'); // DEBUG LOG
+
     if (!message.trim()) return;
 
     const userMessage = message.trim();
-    // Add user message immediately
     setResponses((prev) => [...prev, { type: 'user', content: userMessage }]);
     setMessage('');
     setLoading(true);
@@ -269,18 +270,17 @@ const ChatWidget = () => {
     // Update the last bot response (the placeholder)
     setResponses((prev) => {
       const updated = [...prev];
-      // Find the last bot placeholder and update it
       const lastBotIndex = updated.length - 1;
       if (updated[lastBotIndex] && updated[lastBotIndex].type === 'bot' && updated[lastBotIndex].content === '...') {
         updated[lastBotIndex].content = botResponse;
       } else {
-        // Fallback in case placeholder wasn't correctly set (shouldn't happen with current logic)
-        updated.push({ type: 'bot', content: botResponse });
+        updated.push({ type: 'bot', content: botResponse }); // Fallback
       }
       return updated;
     });
 
     setLoading(false);
+    console.log('Frontend: handleSubmit completed.'); // DEBUG LOG
   };
 
   // Scroll to bottom whenever responses change
@@ -303,14 +303,15 @@ const ChatWidget = () => {
             <button className="close-btn" onClick={() => setOpen(false)}>✖</button>
           </div>
 
-          <div className="chat-body" ref={chatBodyRef}> {/* Attach ref here */}
+          <div className="chat-body" ref={chatBodyRef}>
             {responses.map((res, i) => (
-              <div key={i} className={`chat-bubble ${res.type}`}> {/* Add type for user/bot specific styling */}
+              <div key={i} className={`chat-bubble ${res.type}`}>
                 {res.type === 'user' ? (
                   <p><strong>You:</strong> {res.content}</p>
                 ) : (
-                  // Use ReactMarkdown for bot responses
-                  <p><strong>Bot:</strong> <ReactMarkdown remarkPlugins={[remarkGfm]}>{res.content}</ReactMarkdown></p>
+                  <div className="bot-message-content">
+                    <strong>Bot:</strong> <ReactMarkdown remarkPlugins={[remarkGfm]}>{res.content}</ReactMarkdown>
+                  </div>
                 )}
               </div>
             ))}
@@ -326,7 +327,8 @@ const ChatWidget = () => {
               autoFocus
               disabled={loading}
             />
-            <button type="submit" disabled={loading}>Send</button> {/* Disable button while loading */}
+            {/* The type="submit" is important for correct form behavior */}
+            <button type="submit" disabled={loading}>Send</button>
           </form>
         </div>
       )}
