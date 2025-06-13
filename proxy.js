@@ -285,23 +285,29 @@ You are "E-Soft Assistant", the professional AI chatbot of E-Soft Hub (Private) 
 
 **Operational Guidelines:**
 - Answer clearly, concisely, and directly.
+- **When presenting service packages or lists of information, use clear formatting:**
+    - **Utilize Markdown bolding (\`**text**\`) for emphasis (e.g., package names).**
+    - **Use numbered lists (\`1. Item\`) or bullet points (\`- Item\`) for clarity.**
+    - **Ensure there are extra line breaks (\`\\n\\n\`) between distinct sections, paragraphs, or between each item in a list for better visual separation.**
+    - **You may use relevant, simple emojis (e.g., ✨🚀💎) to enhance readability and appeal when listing packages.**
 - Share service and pricing info directly when asked, referring to the packages provided below.
-- **Actively listen for buying signals or clear interest in a service/package.**
-- **Once clear interest is shown (e.g., asking about a specific package, asking for next steps, expressing a need for a service), proactively pivot to securing contact details for the next step.**
-- **When suggesting a consultation, explicitly ask for Name, Email, and Phone Number.**
-- **When offering to send a custom quote/proposal, explicitly ask for Project Description, Name, and Email.**
-- **When offering to send detailed info, explicitly ask for Email.**
+- Actively listen for buying signals or clear interest in a service/package.
+- Once clear interest is shown (e.g., asking about a specific package, asking for next steps, expressing a need for a service), proactively pivot to securing contact details for the next step.
+- When suggesting a consultation, explicitly ask for Name, Email, and Phone Number.
+- When offering to send a custom quote/proposal, explicitly ask for Project Description, Name, and Email.
+- When offering to send detailed info, explicitly ask for Email.
 - Help the visitor decide the best package or offer based on their stated needs.
 - If a client expresses hesitation or objections, politely address them by reiterating benefits, offering alternative solutions, or gently re-proposing a consultation to clarify concerns.
 - Always guide the user to the next logical step.
 
 **Company Services:**
 1.  **AI-Generated Ads & Commercials:**
-    * PKR 15,000 for one 15–30 second AI video
-    * Packages:
-        * Basic: 3 AI videos, 10 AI images, Facebook Ads setup & management
-        * Standard: 5 AI videos, 10 AI images, Facebook Ads creatives + setup
-        * Premium: 10 AI videos, 20 AI images, complete Ads creatives + setup
+    * PKR 15,000 for one 15–30 second AI video.
+    * **Packages for AI-Generated Ads & Commercials (present clearly):**
+        * **Basic Package** ✨: Includes 3 AI videos, 10 AI images, and Facebook Ads setup & management.
+        * **Standard Package** 🚀: Offers 5 AI videos, 10 AI images, and Facebook Ads creatives + setup.
+        * **Premium Package** 💎: Provides 10 AI videos, 20 AI images, and complete Ads creatives + setup.
+    * Explain pricing when asked. For example, the Basic Package for AI-Generated Ads & Commercials is PKR 15,000.
 2.  **AI Chatbots & AI Agents** for automation (e.g., customer service, sales, lead gen bots)
 3.  **Development Services** for custom web & app solutions (e.g., e-commerce, portfolios, business apps)
 
@@ -313,6 +319,7 @@ You are "E-Soft Assistant", the professional AI chatbot of E-Soft Hub (Private) 
 - Repeating intros or asking the same question more than once.
 - Being a generic chatbot; you are a specialist agent for E-Soft Hub.
 - Giving vague answers when precise information (like pricing or packages) is available.
+- Cluttering responses. Prioritize readability.
 `.trim(),
       },
       ...clientConversations[clientId], // Spread the existing conversation history here
@@ -339,22 +346,10 @@ You are "E-Soft Assistant", the professional AI chatbot of E-Soft Hub (Private) 
     clientConversations[clientId].push({ role: 'assistant', content: botReply });
 
     // --- Lead Qualification and Google Sheet Logic ---
-    // Instead of clearing rigidly after X messages, let's think about a "session end" or "lead qualified" trigger.
-    // For now, we'll keep a simple length check, but you can add more sophisticated logic.
-    // E.g., if the bot successfully collected contact info for a consultation, trigger the save.
-
-    // A simple heuristic: if conversation is getting long OR bot just asked for contact info
-    // For a more robust solution, you'd parse botReply for keywords indicating contact info request
-    // or a successful close, or have a frontend button to "End Chat & Submit Lead".
-
-    // For now, let's trigger summary and save if the conversation is > 8 turns (4 user, 4 bot)
-    // AND if the bot has recently asked for contact info (this requires parsing botReply or maintaining state)
-    // OR if the conversation just gets very long, we summarize to avoid token limits.
     const CONVERSATION_SAVE_THRESHOLD = 8; // Adjust as needed
-    const lastUserMessage = clientConversations[clientId].slice(-2)[0]?.content; // Get last user message
     const lastBotReply = clientConversations[clientId].slice(-1)[0]?.content;   // Get last bot reply
 
-    // Simple check for contact info request (can be made more sophisticated)
+    // Simple heuristic for triggering a summary save (can be made more sophisticated on frontend)
     const hasAskedForContactInfo = (lastBotReply && (
         lastBotReply.toLowerCase().includes('email address') ||
         lastBotReply.toLowerCase().includes('phone number') ||
@@ -364,10 +359,6 @@ You are "E-Soft Assistant", the professional AI chatbot of E-Soft Hub (Private) 
     ));
 
     if (clientConversations[clientId].length >= CONVERSATION_SAVE_THRESHOLD || hasAskedForContactInfo) {
-        // Only trigger if we haven't already processed this "session"
-        // This requires tracking if a summary for this clientId has already been sent for the current session
-        // For simplicity, we'll send it if the conditions are met. In a real app, you'd manage session state.
-
         const conversationSummary = await generateConversationSummary(clientConversations[clientId]);
 
         await fetch(GOOGLE_SHEET_WEBHOOK_URL, {
@@ -376,19 +367,12 @@ You are "E-Soft Assistant", the professional AI chatbot of E-Soft Hub (Private) 
             body: JSON.stringify({
                 timestamp: new Date().toISOString(),
                 clientId: clientId,
-                // Sending the full conversation as a string for context
                 fullConversation: clientConversations[clientId].map(msg => `${msg.role}: ${msg.content}`).join("\n"),
-                // You might extract specific contact info here if the bot manages to collect it
                 summaryNotes: conversationSummary,
             }),
         });
-
-        // OPTIONAL: Clear the conversation history for this client after saving.
-        // Uncomment the line below ONLY if you want the chatbot to start fresh after
-        // a significant interaction is logged to the sheet.
-        // Be careful: this will make the bot forget previous turns if the user continues chatting.
-        // A better approach might be to store a 'session_id' and clear based on that, or summarize periodically.
-        // delete clientConversations[clientId];
+        // You might consider a more sophisticated session management here if you don't want to clear history
+        // delete clientConversations[clientId]; // Uncomment if you want to clear history after saving
     }
 
     res.json({ output_value: botReply });
@@ -398,7 +382,6 @@ You are "E-Soft Assistant", the professional AI chatbot of E-Soft Hub (Private) 
   }
 });
 
-// Modified generateConversationSummary to accept the full conversation array
 async function generateConversationSummary(conversationHistory) {
   try {
     const conversationText = conversationHistory.map(msg => `${msg.role === 'user' ? 'User' : 'Bot'}: ${msg.content}`).join("\n");
@@ -435,7 +418,7 @@ Summary:
             `.trim(),
           },
         ],
-        max_tokens: 300, // Increased max_tokens for summary
+        max_tokens: 300,
         temperature: 0.7,
       }),
     });
